@@ -1,6 +1,8 @@
 ---
 title: "P8400 - Principles of Epidemiology III - Lab #1"
-output: html_document
+output: 
+    github_document:
+        pandoc_args: --webtex
 ---
 
 *** 
