@@ -1,8 +1,13 @@
 ---
 title: "P8400 - Principles of Epidemiology III - Lab #1"
 output: 
-    github_document:
-        pandoc_args: --webtex
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+        
+    #github_document:
+        #pandoc_args: --webtex
 ---
 
 *** 
@@ -228,4 +233,3 @@ crude_rrs_tbl <-
 crude_ors_tbl
 crude_rrs_tbl
 ```
-
