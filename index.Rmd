@@ -5,7 +5,7 @@ output:
     toc: true
     toc_depth: 4
     toc_float: true
-        
+
     #github_document:
         #pandoc_args: --webtex
 ---
@@ -52,7 +52,7 @@ Column No. |  Variable Name | Range/Description |
 
 ***
 
-#### 1. [Original SAS Instruction] Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.  
+#### 1. Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.  
 
 In R, we can do the same task by creating a *tibble* using the `tribble()` function as follows:  
 ```{r generate dataset}
@@ -99,7 +99,7 @@ head(cvd)
 
 ***
 
-#### 2. Create a 2x2 table of Family History and CVD Status
+#### 2. Create a 2x2 table of Family History and CVD Status.
 
 We can do this a few different ways, but I like to use the `tabyl()` function in the `janitor` package. Note: as I was putting this together I ran into some difficulties with generating my tables as I needed them to be. As such, I am now making use of the `gmodels` package, which functions similarly to `PROC FREQ` in SAS.  
 
@@ -112,7 +112,7 @@ As we can see from our output our cells are not placed in the traditional spots.
 
 ***  
 
-#### 3. [Original SAS Instruction] Flip the table so that the cell 'A' is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.  
+#### 3. Flip the table so that the cell 'A' is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.  
 
 We can make use of the `fct_rev()` function in the `forcats` package--part of the overall `tidyverse` to reverse the factor levels of our four factor variables.  
 
@@ -152,7 +152,7 @@ $$ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 $$
 
 ***  
 
-#### 5. Using SAS, calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.  
+#### 5. Calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.  
 
 ```{r crude odds and risk ratios, warning = FALSE}
 # Measuring the crude association between Family History and CVD
@@ -233,3 +233,36 @@ crude_rrs_tbl <-
 crude_ors_tbl
 crude_rrs_tbl
 ```
+
+***  
+
+#### 6. Which exposures are positively associated with CVD? Negatively associated? Explain.  
+
+***  
+
+#### 7. What do you notice about the relationship between the OR and RR? Explain.  
+
+***  
+
+#### 8. Run the larger dataset below (`cvd_2`), which maintains the same proportions of exposure and disease status as the smaller dataset `cvd`.  
+
+***  
+
+#### 9. Calculate the new crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.  
+
+***  
+
+#### 10. Compare the OR and RR values for each exposure-disease relation to those observed in the smaller `cvd` dataset. Are they the same or different? Explain.  
+
+***  
+
+#### 11. Compare the 95% confidence intervals for each exposure-disease relation to those observed in the smaller `cvd` dataset. Are they the same or different? Explain.  
+
+***  
+
+#### 12. What does this example show us abour precision?  
+
+***  
+
+### Part B  
+

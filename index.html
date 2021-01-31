@@ -334,8 +334,8 @@ library(epitools)</code></pre>
 </tbody>
 </table>
 <hr />
-<div id="original-sas-instruction-run-the-format-and-data-statement-below-to-input-the-data.-run-the-print-procedure-to-verify-that-the-data-were-loaded-correctly." class="section level4">
-<h4>1. [Original SAS Instruction] Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.</h4>
+<div id="run-the-format-and-data-statement-below-to-input-the-data.-run-the-print-procedure-to-verify-that-the-data-were-loaded-correctly." class="section level4">
+<h4>1. Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.</h4>
 <p>In R, we can do the same task by creating a <em>tibble</em> using the <code>tribble()</code> function as follows:</p>
 <pre class="r"><code># First, we need to create our binary variable labels
 yes_no_labels &lt;- c(&quot;No&quot;, &quot;Yes&quot;)
@@ -387,8 +387,8 @@ head(cvd)</code></pre>
 ## 6     6 No    No    No    Yes</code></pre>
 <hr />
 </div>
-<div id="create-a-2x2-table-of-family-history-and-cvd-status" class="section level4">
-<h4>2. Create a 2x2 table of Family History and CVD Status</h4>
+<div id="create-a-2x2-table-of-family-history-and-cvd-status." class="section level4">
+<h4>2. Create a 2x2 table of Family History and CVD Status.</h4>
 <p>We can do this a few different ways, but I like to use the <code>tabyl()</code> function in the <code>janitor</code> package. Note: as I was putting this together I ran into some difficulties with generating my tables as I needed them to be. As such, I am now making use of the <code>gmodels</code> package, which functions similarly to <code>PROC FREQ</code> in SAS.</p>
 <pre class="r"><code>famhx_cvd_xtab &lt;-
     CrossTable(cvd$famhx, cvd$cvd, prop.chisq = FALSE)</code></pre>
@@ -427,8 +427,8 @@ head(cvd)</code></pre>
 <p>As we can see from our output our cells are not placed in the traditional spots. That is, our upper-left square should reflect the values of those who both had the exposure and the outcome, and the lower-right square should reflect the values of those who were neither exposed nor had the outcome. We will need to make some adjustments.</p>
 <hr />
 </div>
-<div id="original-sas-instruction-flip-the-table-so-that-the-cell-a-is-exposeddiseased.-next-utilize-the-format-statement-at-the-top-of-the-program-to-label-the-exposuredisease-values." class="section level4">
-<h4>3. [Original SAS Instruction] Flip the table so that the cell ‘A’ is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.</h4>
+<div id="flip-the-table-so-that-the-cell-a-is-exposeddiseased.-next-utilize-the-format-statement-at-the-top-of-the-program-to-label-the-exposuredisease-values." class="section level4">
+<h4>3. Flip the table so that the cell ‘A’ is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.</h4>
 <p>We can make use of the <code>fct_rev()</code> function in the <code>forcats</code> package–part of the overall <code>tidyverse</code> to reverse the factor levels of our four factor variables.</p>
 <pre class="r"><code>cvd &lt;- 
     cvd %&gt;% 
@@ -485,8 +485,8 @@ head(cvd)</code></pre>
 <span class="math display">\[ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 \]</span></p>
 <hr />
 </div>
-<div id="using-sas-calculate-the-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
-<h4>5. Using SAS, calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.</h4>
+<div id="calculate-the-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
+<h4>5. Calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.</h4>
 <pre class="r"><code># Measuring the crude association between Family History and CVD
 or_famhx_cvd &lt;- oddsratio(cvd$famhx, cvd$cvd, method = &quot;wald&quot;)
 or_famhx_cvd_tbl &lt;- 
@@ -612,7 +612,39 @@ crude_rrs_tbl &lt;-
 </tr>
 </tbody>
 </table>
+<hr />
 </div>
+<div id="which-exposures-are-positively-associated-with-cvd-negatively-associated-explain." class="section level4">
+<h4>6. Which exposures are positively associated with CVD? Negatively associated? Explain.</h4>
+<hr />
+</div>
+<div id="what-do-you-notice-about-the-relationship-between-the-or-and-rr-explain." class="section level4">
+<h4>7. What do you notice about the relationship between the OR and RR? Explain.</h4>
+<hr />
+</div>
+<div id="run-the-larger-dataset-below-cvd_2-which-maintains-the-same-proportions-of-exposure-and-disease-status-as-the-smaller-dataset-cvd." class="section level4">
+<h4>8. Run the larger dataset below (<code>cvd_2</code>), which maintains the same proportions of exposure and disease status as the smaller dataset <code>cvd</code>.</h4>
+<hr />
+</div>
+<div id="calculate-the-new-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
+<h4>9. Calculate the new crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.</h4>
+<hr />
+</div>
+<div id="compare-the-or-and-rr-values-for-each-exposure-disease-relation-to-those-observed-in-the-smaller-cvd-dataset.-are-they-the-same-or-different-explain." class="section level4">
+<h4>10. Compare the OR and RR values for each exposure-disease relation to those observed in the smaller <code>cvd</code> dataset. Are they the same or different? Explain.</h4>
+<hr />
+</div>
+<div id="compare-the-95-confidence-intervals-for-each-exposure-disease-relation-to-those-observed-in-the-smaller-cvd-dataset.-are-they-the-same-or-different-explain." class="section level4">
+<h4>11. Compare the 95% confidence intervals for each exposure-disease relation to those observed in the smaller <code>cvd</code> dataset. Are they the same or different? Explain.</h4>
+<hr />
+</div>
+<div id="what-does-this-example-show-us-abour-precision" class="section level4">
+<h4>12. What does this example show us abour precision?</h4>
+<hr />
+</div>
+</div>
+<div id="part-b" class="section level3">
+<h3>Part B</h3>
 </div>
 
 
