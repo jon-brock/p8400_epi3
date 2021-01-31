@@ -61,7 +61,7 @@ and statin use and CVD.
 
 ------------------------------------------------------------------------
 
-##### 1. \[Original SAS Instruction\] Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.
+#### 1. \[Original SAS Instruction\] Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.
 
 In R, we can do the same task by creating a *tibble* using the
 `tribble()` function as follows:
@@ -120,7 +120,7 @@ head(cvd)
 
 ------------------------------------------------------------------------
 
-##### 2. Create a 2x2 table of Family History and CVD Status
+#### 2. Create a 2x2 table of Family History and CVD Status
 
 We can do this a few different ways, but I like to use the `tabyl()`
 function in the `janitor` package. Note: as I was putting this together
@@ -174,7 +174,7 @@ exposed nor had the outcome. We will need to make some adjustments.
 
 ------------------------------------------------------------------------
 
-##### 3. \[Original SAS Instruction\] Flip the table so that the cell ‘A’ is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.
+#### 3. \[Original SAS Instruction\] Flip the table so that the cell ‘A’ is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.
 
 We can make use of the `fct_rev()` function in the `forcats`
 package–part of the overall `tidyverse` to reverse the factor levels of
@@ -232,7 +232,7 @@ famhx_cvd_xtab_formatted <-
 
 ------------------------------------------------------------------------
 
-##### 4. Calculate the crude Odds Ratio (OR) and Relative Risk (RR) by hand.
+#### 4. Calculate the crude Odds Ratio (OR) and Relative Risk (RR) by hand.
 
 We recall that the formula for the **sample** Odds Ratio is
 
@@ -253,7 +253,7 @@ Odds and Risk Ratios:
 
 ------------------------------------------------------------------------
 
-##### 5. Using SAS, calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.
+#### 5. Using SAS, calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.
 
 ``` r
 # Measuring the crude association between Family History and CVD
@@ -317,11 +317,17 @@ rr_obese_cvd_tbl <-
 ``` r
 crude_ors_tbl <- 
     bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %>% 
-    knitr::kable(align = 'c', digits = 2)
+    knitr::kable(
+        align = 'c',
+        digits = 2,
+        caption = "Crude Odds Ratios")
 
 crude_rrs_tbl <- 
     bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %>% 
-    knitr::kable(align = 'c', digits = 2)
+    knitr::kable(
+        align = 'c',
+        digits = 2,
+        caption = "Crude Risk Ratios")
 ```
 
 ``` r
@@ -334,6 +340,8 @@ crude_ors_tbl
 |    0.17    |      0.02       |      1.23       |
 |    3.00    |      0.42       |      21.30      |
 
+Crude Odds Ratios
+
 ``` r
 crude_rrs_tbl
 ```
@@ -343,3 +351,5 @@ crude_rrs_tbl
 |    2.0     |      0.88       |      4.54       |
 |    0.5     |      0.22       |      1.14       |
 |    1.5     |      0.75       |      3.00       |
+
+Crude Risk Ratios
