@@ -1,12 +1,3 @@
----
-title: "P8400 - Principles of Epidemiology III - Lab #1"
-output: 
-  github_document:
-    pandoc_args: --webtex
----
-
-*** 
-
 ```{r load libraries, message = FALSE}
 library(tidyverse)
 library(janitor)

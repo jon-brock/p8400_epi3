@@ -1,0 +1,13 @@
+name: "Jon Brock"
+output_dir: "."
+navbar:
+  right:
+    - text: "LinkedIn"
+      href: https://www.linkedin.com/in/jon-brock/
+    - icon: fa-envelope fa-lg
+      href: mailto:<jpb2210@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/jpb2210/
+output:
+  html_document:
+    theme: sandstone
