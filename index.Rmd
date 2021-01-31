@@ -1,13 +1,8 @@
 ---
 title: "P8400 - Principles of Epidemiology III - Lab #1"
 output: 
-  html_document:
-    toc: true
-    toc_depth: 4
-    toc_float: true
-
-    #github_document:
-        #pandoc_args: --webtex
+    github_document:
+    pandoc_args: --webtex
 ---
 
 *** 
