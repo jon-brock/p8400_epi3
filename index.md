@@ -236,18 +236,20 @@ famhx_cvd_xtab_formatted <-
 
 We recall that the formula for the **sample** Odds Ratio is
 
-$$ \\hat{OR} = \\frac{AD}{BC} $$
+![ \\hat{OR} = \\frac{AD}{BC} ](https://latex.codecogs.com/png.latex?%20%5Chat%7BOR%7D%20%3D%20%5Cfrac%7BAD%7D%7BBC%7D%20 " \hat{OR} = \frac{AD}{BC} ")
 
 and the formula for the **sample** Risk Ratio is
 
-$$ \\hat{RR} = \\frac{A/(A+B)}{C/(C+D)} $$
+![ \\hat{RR} = \\frac{A/(A+B)}{C/(C+D)} ](https://latex.codecogs.com/png.latex?%20%5Chat%7BRR%7D%20%3D%20%5Cfrac%7BA%2F%28A%2BB%29%7D%7BC%2F%28C%2BD%29%7D%20 " \hat{RR} = \frac{A/(A+B)}{C/(C+D)} ")
 
 Using our table values we can now simply calculate our corresponding
 Odds and Risk Ratios:
 
-$$ \\hat{OR} = \\frac{8\*6}{4\*2} = \\frac{48}{8} = 6 $$
+![ \\hat{OR} = \\frac{8\*6}{4\*2} = \\frac{48}{8} = 6 ](https://latex.codecogs.com/png.latex?%20%5Chat%7BOR%7D%20%3D%20%5Cfrac%7B8%2A6%7D%7B4%2A2%7D%20%3D%20%5Cfrac%7B48%7D%7B8%7D%20%3D%206%20 " \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 ")
+
   
-$$ \\hat{RR} = \\frac{8/(8+2)}{4/(4+6)} = \\frac{8/10}{4/10} = 0.8/0.4 = 2 $$
+
+![ \\hat{RR} = \\frac{8/(8+2)}{4/(4+6)} = \\frac{8/10}{4/10} = 0.8/0.4 = 2 ](https://latex.codecogs.com/png.latex?%20%5Chat%7BRR%7D%20%3D%20%5Cfrac%7B8%2F%288%2B2%29%7D%7B4%2F%284%2B6%29%7D%20%3D%20%5Cfrac%7B8%2F10%7D%7B4%2F10%7D%20%3D%200.8%2F0.4%20%3D%202%20 " \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 ")
 
 ------------------------------------------------------------------------
 
