@@ -7,6 +7,7 @@ P8400 - Principles of Epidemiology III - Lab \#1
 library(tidyverse)
 library(janitor)
 library(gmodels)
+library(epitools)
 ```
 
 ------------------------------------------------------------------------
@@ -253,3 +254,92 @@ Odds and Risk Ratios:
 ------------------------------------------------------------------------
 
 ##### 5. Using SAS, calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.
+
+``` r
+# Measuring the crude association between Family History and CVD
+or_famhx_cvd <- oddsratio(cvd$famhx, cvd$cvd, method = "wald")
+or_famhx_cvd_tbl <- 
+    as_tibble(or_famhx_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_famhx_cvd <- riskratio(cvd$famhx, cvd$cvd, method = "wald", rev = "both")
+rr_famhx_cvd_tbl <- 
+    as_tibble(rr_famhx_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+# Measuring the crude association between Statin Use and CVD
+or_statin_cvd <- oddsratio(cvd$statin, cvd$cvd, method = "wald")
+or_statin_cvd_tbl <- 
+    as_tibble(or_statin_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_statin_cvd <- riskratio(cvd$statin, cvd$cvd, method = "wald", rev = "both")
+rr_statin_cvd_tbl <- 
+    as_tibble(rr_statin_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+# Measuring the crude association between Obesity and CVD
+or_obese_cvd <- oddsratio(cvd$obese, cvd$cvd, method = "wald")
+or_obese_cvd_tbl <- 
+    as_tibble(or_obese_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_obese_cvd <- riskratio(cvd$obese, cvd$cvd, method = "wald", rev = "both")
+rr_obese_cvd_tbl <- 
+    as_tibble(rr_obese_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+```
+
+``` r
+crude_ors_tbl <- 
+    bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %>% 
+    knitr::kable(align = 'c', digits = 2)
+
+crude_rrs_tbl <- 
+    bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %>% 
+    knitr::kable(align = 'c', digits = 2)
+```
+
+``` r
+crude_ors_tbl
+```
+
+| odds ratio | 95% lower limit | 95% upper limit |
+|:----------:|:---------------:|:---------------:|
+|    6.00    |      0.81       |      44.35      |
+|    0.17    |      0.02       |      1.23       |
+|    3.00    |      0.42       |      21.30      |
+
+``` r
+crude_rrs_tbl
+```
+
+| risk ratio | 95% lower limit | 95% upper limit |
+|:----------:|:---------------:|:---------------:|
+|    2.0     |      0.88       |      4.54       |
+|    0.5     |      0.22       |      1.14       |
+|    1.5     |      0.75       |      3.00       |
