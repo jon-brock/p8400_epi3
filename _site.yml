@@ -1,6 +1,7 @@
 name: "Jon Brock"
 output_dir: "."
 navbar:
+  title: "Home"
   right:
     - text: "LinkedIn"
       href: https://www.linkedin.com/in/jon-brock/
@@ -10,4 +11,8 @@ navbar:
       href: http://github.com/jpb2210/
 output:
   html_document:
+    toc: true
+    toc_float: true
+      collapsed: true
+      smooth_scroll: true
     theme: sandstone
