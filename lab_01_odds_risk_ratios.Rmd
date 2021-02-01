@@ -127,8 +127,12 @@ $$ \hat{RR} = \frac{A/(A+B)}{C/(C+D)} $$
 
 Using our table values we can now simply calculate our corresponding Odds and Risk Ratios: 
 
+<details>
+    <summary>See Answer</summary>
+
 $$ \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 $$  
 $$ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 $$  
+</details>
 
 ***  
 
