@@ -1,0 +1,247 @@
+***  
+### Review of Odds and Risk Ratios
+***  
+
+### Lab Learning Objectives  
+- ~~To become reacquainted with SAS~~
+- To review the odds ratio (OR) and risk ratio (RR)
+- To learn how sample size affects precision
+- To visually assess the relationship between measures
+- To learn how prevalence of disease among the unexposed influences that relationship
+
+*** 
+
+```{r load libraries, message = FALSE}
+library(tidyverse)
+library(janitor)
+library(gmodels)
+library(epitools)
+```
+
+### Part A  
+
+In Part A of this lab we will be using a simple, made-up dataset examining risk factors for cardiovascular disease (CVD). We will create 2x2 tables to examine the relationship between family history, obesity, and statin use and CVD.
+
+Column No. |  Variable Name | Range/Description |
+--- | --- | --- |
+1 | id | 1-20 (for CVD) and 1-50 (for CVD_2) |
+2 | cvd | Cardiovascular Disease Status <br> 0 = Non-Diseased (no CVD) <br> 1 = Diseased (CVD) |
+3 | famhx | Family History of CVD <br> 0 = No Family History <br> 1 = Family History |
+4 | obese | Obesity <br> 0 = Not Obese <br> 1 = Obese |
+5 | statin | Statin Drug Use <br> 0 = No Statin Drug Use <br> 1 = Statin Drug Use |  
+
+***
+
+#### 1. Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.  
+
+In R, we can do the same task by creating a *tibble* using the `tribble()` function as follows:  
+```{r generate dataset}
+# First, we need to create our binary variable labels
+yes_no_labels <- c("No", "Yes")
+
+# Second, we need to manually input the variable names and values
+cvd <- tribble(
+        ~id, ~cvd, ~famhx, ~obese, ~statin,
+        1,0,1,1,1,
+        2,0,0,0,0,
+        3,1,1,0,0,
+        4,1,1,1,1,
+        5,1,0,1,0,
+        6,0,0,0,1,
+        7,1,1,0,0,
+        8,1,0,0,1,
+        9,0,0,0,1,
+        10,1,1,1,0,
+        11,0,1,1,1,
+        12,0,0,0,0,
+        13,1,1,0,0,
+        14,1,1,1,1,
+        15,1,0,1,0,
+        16,0,0,0,1,
+        17,1,1,0,0,
+        18,1,0,0,1,
+        19,0,0,0,1,
+        20,1,1,1,0) %>%
+# Third, we need to convert our variables into their appropriate types and apply our labels
+    mutate(
+        id = as.integer(id),
+        cvd = as_factor(cvd),
+        cvd = fct_relabel(cvd, ~paste0(yes_no_labels)),
+        famhx = as_factor(famhx),
+        famhx = fct_relabel(famhx, ~paste0(yes_no_labels)),
+        obese = as_factor(obese),
+        obese = fct_relabel(obese, ~paste0(yes_no_labels)),
+        statin = as_factor(statin),
+        statin = fct_relabel(statin, ~paste0(yes_no_labels)))
+
+head(cvd)
+```
+
+***
+
+#### 2. Create a 2x2 table of Family History and CVD Status.
+
+We can do this a few different ways, but I like to use the `tabyl()` function in the `janitor` package. Note: as I was putting this together I ran into some difficulties with generating my tables as I needed them to be. As such, I am now making use of the `gmodels` package, which functions similarly to `PROC FREQ` in SAS.  
+
+```{r generate 2x2 table (famhx-cvd)}
+famhx_cvd_xtab <-
+    CrossTable(cvd$famhx, cvd$cvd, prop.chisq = FALSE)
+```
+
+As we can see from our output our cells are not placed in the traditional spots. That is, our upper-left square should reflect the values of those who both had the exposure and the outcome, and the lower-right square should reflect the values of those who were neither exposed nor had the outcome. We will need to make some adjustments.  
+
+***  
+
+#### 3. Flip the table so that the cell 'A' is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.  
+
+We can make use of the `fct_rev()` function in the `forcats` package--part of the overall `tidyverse` to reverse the factor levels of our four factor variables.  
+
+```{r reversing factor levels}
+cvd <- 
+    cvd %>% 
+        mutate(
+            cvd = fct_rev(cvd),
+            famhx = fct_rev(famhx),
+            obese = fct_rev(obese),
+            statin = fct_rev(statin))
+```
+
+In so doing, we should arrive at our correctly formatted table.  
+
+```{r generate formatted 2x2 table (famhx-cvd)}
+famhx_cvd_xtab_formatted <-
+    CrossTable(cvd$famhx, cvd$cvd, prop.chisq = FALSE)
+```
+
+***  
+
+#### 4. Calculate the crude Odds Ratio (OR) and Relative Risk (RR) by hand.  
+
+We recall that the formula for the **sample** Odds Ratio is 
+
+$$ \hat{OR} = \frac{AD}{BC} $$ 
+
+and the formula for the **sample** Risk Ratio is 
+
+$$ \hat{RR} = \frac{A/(A+B)}{C/(C+D)} $$  
+
+Using our table values we can now simply calculate our corresponding Odds and Risk Ratios: 
+
+$$ \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 $$  
+$$ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 $$  
+
+***  
+
+#### 5. Calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.  
+
+```{r crude odds and risk ratios, warning = FALSE}
+# Measuring the crude association between Family History and CVD
+or_famhx_cvd <- oddsratio(cvd$famhx, cvd$cvd, method = "wald")
+or_famhx_cvd_tbl <- 
+    as_tibble(or_famhx_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_famhx_cvd <- riskratio(cvd$famhx, cvd$cvd, method = "wald", rev = "both")
+rr_famhx_cvd_tbl <- 
+    as_tibble(rr_famhx_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+# Measuring the crude association between Statin Use and CVD
+or_statin_cvd <- oddsratio(cvd$statin, cvd$cvd, method = "wald")
+or_statin_cvd_tbl <- 
+    as_tibble(or_statin_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_statin_cvd <- riskratio(cvd$statin, cvd$cvd, method = "wald", rev = "both")
+rr_statin_cvd_tbl <- 
+    as_tibble(rr_statin_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+# Measuring the crude association between Obesity and CVD
+or_obese_cvd <- oddsratio(cvd$obese, cvd$cvd, method = "wald")
+or_obese_cvd_tbl <- 
+    as_tibble(or_obese_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "odds ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+
+rr_obese_cvd <- riskratio(cvd$obese, cvd$cvd, method = "wald", rev = "both")
+rr_obese_cvd_tbl <- 
+    as_tibble(rr_obese_cvd$measure) %>% 
+    slice(-1) %>% 
+    rename(
+        "risk ratio" = estimate,
+        "95% lower limit" = lower,
+        "95% upper limit" = upper)
+```
+
+```{r combining all output into or/rr tables}
+crude_ors_tbl <- 
+    bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %>% 
+    knitr::kable(
+        align = 'c',
+        digits = 2,
+        caption = "Crude Odds Ratios")
+
+crude_rrs_tbl <- 
+    bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %>% 
+    knitr::kable(
+        align = 'c',
+        digits = 2,
+        caption = "Crude Risk Ratios")
+```
+
+```{r displaying tables}
+crude_ors_tbl
+crude_rrs_tbl
+```
+
+***  
+
+#### 6. Which exposures are positively associated with CVD? Negatively associated? Explain.  
+
+***  
+
+#### 7. What do you notice about the relationship between the OR and RR? Explain.  
+
+***  
+
+#### 8. Run the larger dataset below (`cvd_2`), which maintains the same proportions of exposure and disease status as the smaller dataset `cvd`.  
+
+***  
+
+#### 9. Calculate the new crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.  
+
+***  
+
+#### 10. Compare the OR and RR values for each exposure-disease relation to those observed in the smaller `cvd` dataset. Are they the same or different? Explain.  
+
+***  
+
+#### 11. Compare the 95% confidence intervals for each exposure-disease relation to those observed in the smaller `cvd` dataset. Are they the same or different? Explain.  
+
+***  
+
+#### 12. What does this example show us abour precision?  
+
+***  
+
+### Part B  

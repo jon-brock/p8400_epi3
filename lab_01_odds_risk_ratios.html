@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>lab_01_odds_risk_ratios.utf8</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">P8400 - Principles of Epidemiology III</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lab Topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lab_01_odds_risk_ratios.html">Review of Odds and Risk Ratios</a>
+    </li>
+    <li>
+      <a href="lab_02_bias.html">Bias</a>
+    </li>
+    <li>
+      <a href="lab_03_interaction.html">Interaction</a>
+    </li>
+    <li>
+      <a href="lab_04_logistic_regression.html">Logistic Regression</a>
+    </li>
+    <li>
+      <a href="lab_05_model_building.html">Model Building</a>
+    </li>
+    <li>
+      <a href="lab_06_kaplan_meier.html">Kaplan Meier Survival Analysis</a>
+    </li>
+    <li>
+      <a href="lab_07_cox_prop_hazard_modeling.html">Cox-Proportional Hazard Modeling</a>
+    </li>
+    <li>
+      <a href="lab_08_conditional_logistic_regression.html">Conditional Logistic Regression</a>
+    </li>
+    <li>
+      <a href="lab_09_gee_poisson_relative_risk.html">GEE, Poisson, and Relative Risk Regression</a>
+    </li>
+    <li>
+      <a href="lab_10_synthesis_of_literature.html">Synthesis of the Literature</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://www.linkedin.com/in/jon-brock/">LinkedIn</a>
+</li>
+<li>
+  <a href="mailto:&lt;j.brock@columbia.edu&gt;">
+    <span class="fas fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/jpb2210/">
+    <span class="fa fa fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<div id="review-of-odds-and-risk-ratios" class="section level3">
+<h3>Review of Odds and Risk Ratios</h3>
+<hr />
+</div>
+<div id="lab-learning-objectives" class="section level3">
+<h3>Lab Learning Objectives</h3>
+<ul>
+<li><del>To become reacquainted with SAS</del></li>
+<li>To review the odds ratio (OR) and risk ratio (RR)</li>
+<li>To learn how sample size affects precision</li>
+<li>To visually assess the relationship between measures</li>
+<li>To learn how prevalence of disease among the unexposed influences that relationship</li>
+</ul>
+<hr />
+<pre class="r"><code>library(tidyverse)
+library(janitor)
+library(gmodels)
+library(epitools)</code></pre>
+</div>
+<div id="part-a" class="section level3">
+<h3>Part A</h3>
+<p>In Part A of this lab we will be using a simple, made-up dataset examining risk factors for cardiovascular disease (CVD). We will create 2x2 tables to examine the relationship between family history, obesity, and statin use and CVD.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column No.</th>
+<th>Variable Name</th>
+<th>Range/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>id</td>
+<td>1-20 (for CVD) and 1-50 (for CVD_2)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>cvd</td>
+<td>Cardiovascular Disease Status <br> 0 = Non-Diseased (no CVD) <br> 1 = Diseased (CVD)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>famhx</td>
+<td>Family History of CVD <br> 0 = No Family History <br> 1 = Family History</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>obese</td>
+<td>Obesity <br> 0 = Not Obese <br> 1 = Obese</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>statin</td>
+<td>Statin Drug Use <br> 0 = No Statin Drug Use <br> 1 = Statin Drug Use</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="run-the-format-and-data-statement-below-to-input-the-data.-run-the-print-procedure-to-verify-that-the-data-were-loaded-correctly." class="section level4">
+<h4>1. Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.</h4>
+<p>In R, we can do the same task by creating a <em>tibble</em> using the <code>tribble()</code> function as follows:</p>
+<pre class="r"><code># First, we need to create our binary variable labels
+yes_no_labels &lt;- c(&quot;No&quot;, &quot;Yes&quot;)
+
+# Second, we need to manually input the variable names and values
+cvd &lt;- tribble(
+        ~id, ~cvd, ~famhx, ~obese, ~statin,
+        1,0,1,1,1,
+        2,0,0,0,0,
+        3,1,1,0,0,
+        4,1,1,1,1,
+        5,1,0,1,0,
+        6,0,0,0,1,
+        7,1,1,0,0,
+        8,1,0,0,1,
+        9,0,0,0,1,
+        10,1,1,1,0,
+        11,0,1,1,1,
+        12,0,0,0,0,
+        13,1,1,0,0,
+        14,1,1,1,1,
+        15,1,0,1,0,
+        16,0,0,0,1,
+        17,1,1,0,0,
+        18,1,0,0,1,
+        19,0,0,0,1,
+        20,1,1,1,0) %&gt;%
+# Third, we need to convert our variables into their appropriate types and apply our labels
+    mutate(
+        id = as.integer(id),
+        cvd = as_factor(cvd),
+        cvd = fct_relabel(cvd, ~paste0(yes_no_labels)),
+        famhx = as_factor(famhx),
+        famhx = fct_relabel(famhx, ~paste0(yes_no_labels)),
+        obese = as_factor(obese),
+        obese = fct_relabel(obese, ~paste0(yes_no_labels)),
+        statin = as_factor(statin),
+        statin = fct_relabel(statin, ~paste0(yes_no_labels)))
+
+head(cvd)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##      id cvd   famhx obese statin
+##   &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; 
+## 1     1 No    Yes   Yes   Yes   
+## 2     2 No    No    No    No    
+## 3     3 Yes   Yes   No    No    
+## 4     4 Yes   Yes   Yes   Yes   
+## 5     5 Yes   No    Yes   No    
+## 6     6 No    No    No    Yes</code></pre>
+<hr />
+</div>
+<div id="create-a-2x2-table-of-family-history-and-cvd-status." class="section level4">
+<h4>2. Create a 2x2 table of Family History and CVD Status.</h4>
+<p>We can do this a few different ways, but I like to use the <code>tabyl()</code> function in the <code>janitor</code> package. Note: as I was putting this together I ran into some difficulties with generating my tables as I needed them to be. As such, I am now making use of the <code>gmodels</code> package, which functions similarly to <code>PROC FREQ</code> in SAS.</p>
+<pre class="r"><code>famhx_cvd_xtab &lt;-
+    CrossTable(cvd$famhx, cvd$cvd, prop.chisq = FALSE)</code></pre>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  20 
+## 
+##  
+##              | cvd$cvd 
+##    cvd$famhx |        No |       Yes | Row Total | 
+## -------------|-----------|-----------|-----------|
+##           No |         6 |         4 |        10 | 
+##              |     0.600 |     0.400 |     0.500 | 
+##              |     0.750 |     0.333 |           | 
+##              |     0.300 |     0.200 |           | 
+## -------------|-----------|-----------|-----------|
+##          Yes |         2 |         8 |        10 | 
+##              |     0.200 |     0.800 |     0.500 | 
+##              |     0.250 |     0.667 |           | 
+##              |     0.100 |     0.400 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |         8 |        12 |        20 | 
+##              |     0.400 |     0.600 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<p>As we can see from our output our cells are not placed in the traditional spots. That is, our upper-left square should reflect the values of those who both had the exposure and the outcome, and the lower-right square should reflect the values of those who were neither exposed nor had the outcome. We will need to make some adjustments.</p>
+<hr />
+</div>
+<div id="flip-the-table-so-that-the-cell-a-is-exposeddiseased.-next-utilize-the-format-statement-at-the-top-of-the-program-to-label-the-exposuredisease-values." class="section level4">
+<h4>3. Flip the table so that the cell ‘A’ is Exposed/Diseased. Next, utilize the format statement at the top of the program to label the Exposure/Disease values.</h4>
+<p>We can make use of the <code>fct_rev()</code> function in the <code>forcats</code> package–part of the overall <code>tidyverse</code> to reverse the factor levels of our four factor variables.</p>
+<pre class="r"><code>cvd &lt;- 
+    cvd %&gt;% 
+        mutate(
+            cvd = fct_rev(cvd),
+            famhx = fct_rev(famhx),
+            obese = fct_rev(obese),
+            statin = fct_rev(statin))</code></pre>
+<p>In so doing, we should arrive at our correctly formatted table.</p>
+<pre class="r"><code>famhx_cvd_xtab_formatted &lt;-
+    CrossTable(cvd$famhx, cvd$cvd, prop.chisq = FALSE)</code></pre>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  20 
+## 
+##  
+##              | cvd$cvd 
+##    cvd$famhx |       Yes |        No | Row Total | 
+## -------------|-----------|-----------|-----------|
+##          Yes |         8 |         2 |        10 | 
+##              |     0.800 |     0.200 |     0.500 | 
+##              |     0.667 |     0.250 |           | 
+##              |     0.400 |     0.100 |           | 
+## -------------|-----------|-----------|-----------|
+##           No |         4 |         6 |        10 | 
+##              |     0.400 |     0.600 |     0.500 | 
+##              |     0.333 |     0.750 |           | 
+##              |     0.200 |     0.300 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |        12 |         8 |        20 | 
+##              |     0.600 |     0.400 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<hr />
+</div>
+<div id="calculate-the-crude-odds-ratio-or-and-relative-risk-rr-by-hand." class="section level4">
+<h4>4. Calculate the crude Odds Ratio (OR) and Relative Risk (RR) by hand.</h4>
+<p>We recall that the formula for the <strong>sample</strong> Odds Ratio is</p>
+<p><span class="math display">\[ \hat{OR} = \frac{AD}{BC} \]</span></p>
+<p>and the formula for the <strong>sample</strong> Risk Ratio is</p>
+<p><span class="math display">\[ \hat{RR} = \frac{A/(A+B)}{C/(C+D)} \]</span></p>
+<p>Using our table values we can now simply calculate our corresponding Odds and Risk Ratios:</p>
+<p><span class="math display">\[ \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 \]</span><br />
+<span class="math display">\[ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 \]</span></p>
+<hr />
+</div>
+<div id="calculate-the-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
+<h4>5. Calculate the crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.</h4>
+<pre class="r"><code># Measuring the crude association between Family History and CVD
+or_famhx_cvd &lt;- oddsratio(cvd$famhx, cvd$cvd, method = &quot;wald&quot;)
+or_famhx_cvd_tbl &lt;- 
+    as_tibble(or_famhx_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;odds ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)
+
+rr_famhx_cvd &lt;- riskratio(cvd$famhx, cvd$cvd, method = &quot;wald&quot;, rev = &quot;both&quot;)
+rr_famhx_cvd_tbl &lt;- 
+    as_tibble(rr_famhx_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;risk ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)
+
+# Measuring the crude association between Statin Use and CVD
+or_statin_cvd &lt;- oddsratio(cvd$statin, cvd$cvd, method = &quot;wald&quot;)
+or_statin_cvd_tbl &lt;- 
+    as_tibble(or_statin_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;odds ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)
+
+rr_statin_cvd &lt;- riskratio(cvd$statin, cvd$cvd, method = &quot;wald&quot;, rev = &quot;both&quot;)
+rr_statin_cvd_tbl &lt;- 
+    as_tibble(rr_statin_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;risk ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)
+
+# Measuring the crude association between Obesity and CVD
+or_obese_cvd &lt;- oddsratio(cvd$obese, cvd$cvd, method = &quot;wald&quot;)
+or_obese_cvd_tbl &lt;- 
+    as_tibble(or_obese_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;odds ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)
+
+rr_obese_cvd &lt;- riskratio(cvd$obese, cvd$cvd, method = &quot;wald&quot;, rev = &quot;both&quot;)
+rr_obese_cvd_tbl &lt;- 
+    as_tibble(rr_obese_cvd$measure) %&gt;% 
+    slice(-1) %&gt;% 
+    rename(
+        &quot;risk ratio&quot; = estimate,
+        &quot;95% lower limit&quot; = lower,
+        &quot;95% upper limit&quot; = upper)</code></pre>
+<pre class="r"><code>crude_ors_tbl &lt;- 
+    bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %&gt;% 
+    knitr::kable(
+        align = &#39;c&#39;,
+        digits = 2,
+        caption = &quot;Crude Odds Ratios&quot;)
+
+crude_rrs_tbl &lt;- 
+    bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %&gt;% 
+    knitr::kable(
+        align = &#39;c&#39;,
+        digits = 2,
+        caption = &quot;Crude Risk Ratios&quot;)</code></pre>
+<pre class="r"><code>crude_ors_tbl</code></pre>
+<table>
+<caption>Crude Odds Ratios</caption>
+<thead>
+<tr class="header">
+<th align="center">odds ratio</th>
+<th align="center">95% lower limit</th>
+<th align="center">95% upper limit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">6.00</td>
+<td align="center">0.81</td>
+<td align="center">44.35</td>
+</tr>
+<tr class="even">
+<td align="center">0.17</td>
+<td align="center">0.02</td>
+<td align="center">1.23</td>
+</tr>
+<tr class="odd">
+<td align="center">3.00</td>
+<td align="center">0.42</td>
+<td align="center">21.30</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>crude_rrs_tbl</code></pre>
+<table>
+<caption>Crude Risk Ratios</caption>
+<thead>
+<tr class="header">
+<th align="center">risk ratio</th>
+<th align="center">95% lower limit</th>
+<th align="center">95% upper limit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">0.88</td>
+<td align="center">4.54</td>
+</tr>
+<tr class="even">
+<td align="center">0.5</td>
+<td align="center">0.22</td>
+<td align="center">1.14</td>
+</tr>
+<tr class="odd">
+<td align="center">1.5</td>
+<td align="center">0.75</td>
+<td align="center">3.00</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="which-exposures-are-positively-associated-with-cvd-negatively-associated-explain." class="section level4">
+<h4>6. Which exposures are positively associated with CVD? Negatively associated? Explain.</h4>
+<hr />
+</div>
+<div id="what-do-you-notice-about-the-relationship-between-the-or-and-rr-explain." class="section level4">
+<h4>7. What do you notice about the relationship between the OR and RR? Explain.</h4>
+<hr />
+</div>
+<div id="run-the-larger-dataset-below-cvd_2-which-maintains-the-same-proportions-of-exposure-and-disease-status-as-the-smaller-dataset-cvd." class="section level4">
+<h4>8. Run the larger dataset below (<code>cvd_2</code>), which maintains the same proportions of exposure and disease status as the smaller dataset <code>cvd</code>.</h4>
+<hr />
+</div>
+<div id="calculate-the-new-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
+<h4>9. Calculate the new crude OR and RR for the associations between Family History, Statin Use, Obesity, and CVD, as well as the 95% Confidence Intervals.</h4>
+<hr />
+</div>
+<div id="compare-the-or-and-rr-values-for-each-exposure-disease-relation-to-those-observed-in-the-smaller-cvd-dataset.-are-they-the-same-or-different-explain." class="section level4">
+<h4>10. Compare the OR and RR values for each exposure-disease relation to those observed in the smaller <code>cvd</code> dataset. Are they the same or different? Explain.</h4>
+<hr />
+</div>
+<div id="compare-the-95-confidence-intervals-for-each-exposure-disease-relation-to-those-observed-in-the-smaller-cvd-dataset.-are-they-the-same-or-different-explain." class="section level4">
+<h4>11. Compare the 95% confidence intervals for each exposure-disease relation to those observed in the smaller <code>cvd</code> dataset. Are they the same or different? Explain.</h4>
+<hr />
+</div>
+<div id="what-does-this-example-show-us-abour-precision" class="section level4">
+<h4>12. What does this example show us abour precision?</h4>
+<hr />
+</div>
+</div>
+<div id="part-b" class="section level3">
+<h3>Part B</h3>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
