@@ -1,38 +1,38 @@
 name: "Jon Brock"
 output_dir: "."
 navbar:
-  title: "P8400 - Principles of Epidemiology III"
+  title: "Home"
   left:
   - text: Home
     href: index.html
   - text: Lab Topics
     menu: 
-    - text: Review of Odds and Risk Ratios
+    - text: 01. Review of Odds and Risk Ratios
       href: lab_01_odds_risk_ratios.html
-    - text: Bias
+    - text: 02. Bias
       href: lab_02_bias.html
-    - text: Interaction
+    - text: 03. Interaction
       href: lab_03_interaction.html
-    - text: Logistic Regression
+    - text: 04. Logistic Regression
       href: lab_04_logistic_regression.html
-    - text: Model Building
+    - text: 05. Model Building
       href: lab_05_model_building.html
-    - text: Kaplan Meier Survival Analysis
+    - text: 06. Kaplan Meier Survival Analysis
       href: lab_06_kaplan_meier.html
-    - text: Cox-Proportional Hazard Modeling
+    - text: 07. Cox-Proportional Hazard Modeling
       href: lab_07_cox_prop_hazard_modeling.html
-    - text: Conditional Logistic Regression
+    - text: 08. Conditional Logistic Regression
       href: lab_08_conditional_logistic_regression.html
-    - text: GEE, Poisson, and Relative Risk Regression
+    - text: 09. GEE, Poisson, and Relative Risk Regression
       href: lab_09_gee_poisson_relative_risk.html
-    - text: Synthesis of the Literature
+    - text: 10. Synthesis of the Literature
       href: lab_10_synthesis_of_literature.html
   right:
     - text: "LinkedIn"
       href: https://www.linkedin.com/in/jon-brock/
-    - icon: fa-envelope fa-lg
+    - text: "Email"
       href: mailto:<j.brock@columbia.edu>
-    - icon: fa fa-github fa-lg
+    - text: "GitHub"
       href: http://github.com/jpb2210/
 output:
   html_document:

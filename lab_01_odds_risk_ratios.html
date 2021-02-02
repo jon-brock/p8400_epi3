@@ -11,7 +11,7 @@
 
 
 
-<title>lab_01_odds_risk_ratios.utf8</title>
+<title>Review of Odds and Risk Ratios</title>
 
 <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -23,8 +23,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -280,7 +280,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">P8400 - Principles of Epidemiology III</a>
+      <a class="navbar-brand" href="index.html">Home</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -295,34 +295,34 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="lab_01_odds_risk_ratios.html">Review of Odds and Risk Ratios</a>
+      <a href="lab_01_odds_risk_ratios.html">01. Review of Odds and Risk Ratios</a>
     </li>
     <li>
-      <a href="lab_02_bias.html">Bias</a>
+      <a href="lab_02_bias.html">02. Bias</a>
     </li>
     <li>
-      <a href="lab_03_interaction.html">Interaction</a>
+      <a href="lab_03_interaction.html">03. Interaction</a>
     </li>
     <li>
-      <a href="lab_04_logistic_regression.html">Logistic Regression</a>
+      <a href="lab_04_logistic_regression.html">04. Logistic Regression</a>
     </li>
     <li>
-      <a href="lab_05_model_building.html">Model Building</a>
+      <a href="lab_05_model_building.html">05. Model Building</a>
     </li>
     <li>
-      <a href="lab_06_kaplan_meier.html">Kaplan Meier Survival Analysis</a>
+      <a href="lab_06_kaplan_meier.html">06. Kaplan Meier Survival Analysis</a>
     </li>
     <li>
-      <a href="lab_07_cox_prop_hazard_modeling.html">Cox-Proportional Hazard Modeling</a>
+      <a href="lab_07_cox_prop_hazard_modeling.html">07. Cox-Proportional Hazard Modeling</a>
     </li>
     <li>
-      <a href="lab_08_conditional_logistic_regression.html">Conditional Logistic Regression</a>
+      <a href="lab_08_conditional_logistic_regression.html">08. Conditional Logistic Regression</a>
     </li>
     <li>
-      <a href="lab_09_gee_poisson_relative_risk.html">GEE, Poisson, and Relative Risk Regression</a>
+      <a href="lab_09_gee_poisson_relative_risk.html">09. GEE, Poisson, and Relative Risk Regression</a>
     </li>
     <li>
-      <a href="lab_10_synthesis_of_literature.html">Synthesis of the Literature</a>
+      <a href="lab_10_synthesis_of_literature.html">10. Synthesis of the Literature</a>
     </li>
   </ul>
 </li>
@@ -332,16 +332,10 @@ $(document).ready(function () {
   <a href="https://www.linkedin.com/in/jon-brock/">LinkedIn</a>
 </li>
 <li>
-  <a href="mailto:&lt;j.brock@columbia.edu&gt;">
-    <span class="fas fa-envelope fa-lg"></span>
-     
-  </a>
+  <a href="mailto:&lt;j.brock@columbia.edu&gt;">Email</a>
 </li>
 <li>
-  <a href="http://github.com/jpb2210/">
-    <span class="fa fa fa fa-github fa-lg"></span>
-     
-  </a>
+  <a href="http://github.com/jpb2210/">GitHub</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -352,15 +346,11 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Review of Odds and Risk Ratios</h1>
 
 </div>
 
 
-<hr />
-<div id="review-of-odds-and-risk-ratios" class="section level3">
-<h3>Review of Odds and Risk Ratios</h3>
-<hr />
-</div>
 <div id="lab-learning-objectives" class="section level3">
 <h3>Lab Learning Objectives</h3>
 <ul>
@@ -374,11 +364,13 @@ $(document).ready(function () {
 <pre class="r"><code>library(tidyverse)
 library(janitor)
 library(gmodels)
-library(epitools)</code></pre>
+library(epitools)
+library(kableExtra)</code></pre>
 </div>
 <div id="part-a" class="section level3">
 <h3>Part A</h3>
 <p>In Part A of this lab we will be using a simple, made-up dataset examining risk factors for cardiovascular disease (CVD). We will create 2x2 tables to examine the relationship between family history, obesity, and statin use and CVD.</p>
+<p>To begin, please open up SAS and start a new program. You may want to save this program as ‘Lab 1’ to your flash drive for future reference. As you go through the lab, you will need to copy and paste the code that is provided to your new SAS program.</p>
 <table>
 <colgroup>
 <col width="33%" />
@@ -423,6 +415,12 @@ library(epitools)</code></pre>
 <hr />
 <div id="run-the-format-and-data-statement-below-to-input-the-data.-run-the-print-procedure-to-verify-that-the-data-were-loaded-correctly." class="section level4">
 <h4>1. Run the format and data statement below to input the data. Run the print procedure to verify that the data were loaded correctly.</h4>
+</div>
+</div>
+<div id="section" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="r" class="section level2">
+<h2>R</h2>
 <p>In R, we can do the same task by creating a <em>tibble</em> using the <code>tribble()</code> function as follows:</p>
 <pre class="r"><code># First, we need to create our binary variable labels
 yes_no_labels &lt;- c(&quot;No&quot;, &quot;Yes&quot;)
@@ -472,8 +470,45 @@ head(cvd)</code></pre>
 ## 4     4 Yes   Yes   Yes   Yes   
 ## 5     5 Yes   No    Yes   No    
 ## 6     6 No    No    No    Yes</code></pre>
-<hr />
 </div>
+<div id="sas" class="section level2">
+<h2>SAS</h2>
+<p>In SAS, you would code it this way:</p>
+<pre><code>proc format;
+  value yn  1=&#39;Yes&#39;
+            0=&#39;No&#39;;
+run;
+
+data CVD;
+    input ID 1-3 CVD 4-5 FAMHX 6-7 OBESE 8-9 STATIN 10-11;
+        datalines;
+1  0 1 1 1
+2  0 0 0 0
+3  1 1 0 0
+4  1 1 1 1
+5  1 0 1 0
+6  0 0 0 1
+7  1 1 0 0
+8  1 0 0 1
+9  0 0 0 1
+10 1 1 1 0
+11 0 1 1 1
+12 0 0 0 0
+13 1 1 0 0
+14 1 1 1 1
+15 1 0 1 0
+16 0 0 0 1
+17 1 1 0 0
+18 1 0 0 1
+19 0 0 0 1
+20 1 1 1 0
+;
+
+run;
+
+proc print data = CVD; run;</code></pre>
+</div>
+<hr />
 <div id="create-a-2x2-table-of-family-history-and-cvd-status." class="section level4">
 <h4>2. Create a 2x2 table of Family History and CVD Status.</h4>
 <p>We can do this a few different ways, but I like to use the <code>tabyl()</code> function in the <code>janitor</code> package. Note: as I was putting this together I ran into some difficulties with generating my tables as I needed them to be. As such, I am now making use of the <code>gmodels</code> package, which functions similarly to <code>PROC FREQ</code> in SAS.</p>
@@ -568,13 +603,8 @@ head(cvd)</code></pre>
 <p>and the formula for the <strong>sample</strong> Risk Ratio is</p>
 <p><span class="math display">\[ \hat{RR} = \frac{A/(A+B)}{C/(C+D)} \]</span></p>
 <p>Using our table values we can now simply calculate our corresponding Odds and Risk Ratios:</p>
-<details>
-<summary>
-See Answer
-</summary>
-<span class="math display">\[ \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 \]</span><br />
-<span class="math display">\[ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 \]</span>
-</details>
+<p><span class="math display">\[ \hat{OR} = \frac{8*6}{4*2} = \frac{48}{8} = 6 \]</span><br />
+<span class="math display">\[ \hat{RR} = \frac{8/(8+2)}{4/(4+6)} = \frac{8/10}{4/10} = 0.8/0.4 = 2 \]</span></p>
 <hr />
 </div>
 <div id="calculate-the-crude-or-and-rr-for-the-associations-between-family-history-statin-use-obesity-and-cvd-as-well-as-the-95-confidence-intervals." class="section level4">
@@ -635,72 +665,143 @@ rr_obese_cvd_tbl &lt;-
         &quot;risk ratio&quot; = estimate,
         &quot;95% lower limit&quot; = lower,
         &quot;95% upper limit&quot; = upper)</code></pre>
-<pre class="r"><code>crude_ors_tbl &lt;- 
-    bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %&gt;% 
-    knitr::kable(
-        align = &#39;c&#39;,
-        digits = 2,
-        caption = &quot;Crude Odds Ratios&quot;)
+<pre class="r"><code>crude_names &lt;- c(&quot;Family History and CVD&quot;, &quot;Statin Use and CVD&quot;, &quot;Obesity and CVD&quot;)
 
-crude_rrs_tbl &lt;- 
+crude_ors_tbl &lt;- 
+    bind_rows(or_famhx_cvd_tbl, or_statin_cvd_tbl, or_obese_cvd_tbl) %&gt;% 
+    bind_cols(crude_names) %&gt;% 
+    rename(&quot;exposure and outcome&quot; = ...4) %&gt;% 
+    select(&quot;exposure and outcome&quot;, everything()) %&gt;% 
+    mutate_if(is.numeric, round, digits = 2) %&gt;% 
+    #knitr::kable(
+    #   align = &#39;c&#39;,
+    #   digits = 2,
+    #   caption = &quot;Crude Odds Ratios&quot;)
+    kbl() %&gt;% 
+        kable_styling(bootstrap_options = c(&quot;striped&quot;, full_width = F, &quot; condensed&quot;))</code></pre>
+<pre><code>## New names:
+## * NA -&gt; ...4</code></pre>
+<pre class="r"><code>crude_rrs_tbl &lt;- 
     bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %&gt;% 
     knitr::kable(
         align = &#39;c&#39;,
         digits = 2,
         caption = &quot;Crude Risk Ratios&quot;)</code></pre>
 <pre class="r"><code>crude_ors_tbl</code></pre>
-<table>
-<caption>Crude Odds Ratios</caption>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th align="center">odds ratio</th>
-<th align="center">95% lower limit</th>
-<th align="center">95% upper limit</th>
+<tr>
+<th style="text-align:left;">
+exposure and outcome
+</th>
+<th style="text-align:right;">
+odds ratio
+</th>
+<th style="text-align:right;">
+95% lower limit
+</th>
+<th style="text-align:right;">
+95% upper limit
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">6.00</td>
-<td align="center">0.81</td>
-<td align="center">44.35</td>
+<tr>
+<td style="text-align:left;">
+Family History and CVD
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+44.35
+</td>
 </tr>
-<tr class="even">
-<td align="center">0.17</td>
-<td align="center">0.02</td>
-<td align="center">1.23</td>
+<tr>
+<td style="text-align:left;">
+Statin Use and CVD
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+1.23
+</td>
 </tr>
-<tr class="odd">
-<td align="center">3.00</td>
-<td align="center">0.42</td>
-<td align="center">21.30</td>
+<tr>
+<td style="text-align:left;">
+Obesity and CVD
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+21.30
+</td>
 </tr>
 </tbody>
 </table>
+<hr />
 <pre class="r"><code>crude_rrs_tbl</code></pre>
 <table>
-<caption>Crude Risk Ratios</caption>
+<caption>
+Crude Risk Ratios
+</caption>
 <thead>
-<tr class="header">
-<th align="center">risk ratio</th>
-<th align="center">95% lower limit</th>
-<th align="center">95% upper limit</th>
+<tr>
+<th style="text-align:center;">
+risk ratio
+</th>
+<th style="text-align:center;">
+95% lower limit
+</th>
+<th style="text-align:center;">
+95% upper limit
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">2.0</td>
-<td align="center">0.88</td>
-<td align="center">4.54</td>
+<tr>
+<td style="text-align:center;">
+2.0
+</td>
+<td style="text-align:center;">
+0.88
+</td>
+<td style="text-align:center;">
+4.54
+</td>
 </tr>
-<tr class="even">
-<td align="center">0.5</td>
-<td align="center">0.22</td>
-<td align="center">1.14</td>
+<tr>
+<td style="text-align:center;">
+0.5
+</td>
+<td style="text-align:center;">
+0.22
+</td>
+<td style="text-align:center;">
+1.14
+</td>
 </tr>
-<tr class="odd">
-<td align="center">1.5</td>
-<td align="center">0.75</td>
-<td align="center">3.00</td>
+<tr>
+<td style="text-align:center;">
+1.5
+</td>
+<td style="text-align:center;">
+0.75
+</td>
+<td style="text-align:center;">
+3.00
+</td>
 </tr>
 </tbody>
 </table>
@@ -734,9 +835,10 @@ crude_rrs_tbl &lt;-
 <h4>12. What does this example show us abour precision?</h4>
 <hr />
 </div>
-</div>
 <div id="part-b" class="section level3">
 <h3>Part B</h3>
+</div>
+</div>
 </div>
 
 
