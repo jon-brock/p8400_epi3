@@ -3,8 +3,6 @@ output_dir: "."
 navbar:
   title: "Home"
   left:
-  - text: Home
-    href: index.html
   - text: Lab Topics
     menu: 
     - text: 01. Review of Odds and Risk Ratios
@@ -27,6 +25,22 @@ navbar:
       href: lab_09_gee_poisson_relative_risk.html
     - text: 10. Synthesis of the Literature
       href: lab_10_synthesis_of_literature.html
+  - text: Datasets
+    menu:
+    - text: Adult BMI
+      href: datasets/adult_bmi.sas7bdat
+    - text: Community Health Survey
+      href: datasets/chs03.sas7bdat
+    - text: C-Reactive Protein Angina
+      href: datasets/crp_angina.sas7bdat
+    - text: HIV/HCV
+      href: datasets/hivhepc.sas7bdat
+    - text: Generalized Estimating Equations
+      href: datasets/lab9_gee.sas7bdat
+    - text: Meta-Analysis
+      href: datasets/metaanlysis.xls
+    - text: Montana
+      href: datasets/montana.txt
   right:
     - text: "LinkedIn"
       href: https://www.linkedin.com/in/jon-brock/
