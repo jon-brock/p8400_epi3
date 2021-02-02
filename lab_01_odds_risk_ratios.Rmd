@@ -84,7 +84,7 @@ cvd <- tribble(
 
 head(cvd)
 ```
-
+  
 ## SAS  
 
 In SAS, you would code it this way:  
@@ -125,7 +125,7 @@ run;
 proc print data = CVD; run;
 ```
 
-</div>
+# {-}
 
 ***
 

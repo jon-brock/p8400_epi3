@@ -437,19 +437,31 @@ $(document).ready(function () {
 </div>
 <div id="r" class="section level2">
 <h2>R</h2>
+<p>In R, we do not need to worry about <code>libnames</code>, as we use an entirely different system of data import.</p>
+<pre class="r"><code># Code to be entered later  </code></pre>
 </div>
+</div>
+<div id="section-1" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
 <hr />
 <div id="run-proc-contents-to-see-if-the-datasets-loaded-properlyif-your-libname-was-successfully-assigned" class="section level4">
 <h4>2. Run <code>PROC CONTENTS</code> to see if the datasets loaded properly/if your <code>LIBNAME</code> was successfully assigned</h4>
 </div>
 </div>
-</div>
-<div id="section-1" class="section level1 tabset tabset-fade">
+<div id="section-2" class="section level1 tabset tabset-fade">
 <h1 class="tabset tabset-fade"></h1>
 <div id="sas-1" class="section level2">
 <h2>SAS</h2>
 <pre><code>proc contents data = Epi3.chs03;
 run;</code></pre>
+</div>
+<div id="r-1" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-3" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
 <hr />
 <p><strong>PROC FORMAT</strong></p>
 <ul>
@@ -459,9 +471,431 @@ run;</code></pre>
 <li>This dataset has user defined formats. You have to run the following format code in order to open up the dataset.</li>
 </ul>
 </div>
-<div id="r-1" class="section level2">
-<h2>R</h2>
+<div id="section-4" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-2" class="section level2">
+<h2>SAS</h2>
+<p><span style="color:green"><strong>Note</strong>: if you have a dataset with permanent formats, but you don’t have the format library, then you can use the code <code>options nofmterr</code> to open the dataset. This statement should be placed at the top of your program (before the <code>libname</code>)</span></p>
+<pre><code>proc format; 
+    value sex
+        1 = &#39;Male&#39;
+        2 = &#39;Female&#39;; 
+    value famhx
+        1 = &#39;First degree relative&#39;
+        2 = &#39;Second degree relative&#39;
+        3 = &#39;No relatives with col. cancer&#39; 
+        4 = &#39;Don&#39;&#39;t Know&#39;;
+    value que
+        1 = &#39;Private&#39;
+        2 = &#39;Medicare&#39; 
+        3 = &#39;Medicaid&#39; 
+        4 = &#39;Other&#39;
+        5 = &#39;Uninsured&#39;;
+    value colon
+        1=&#39;&lt;= 10 yrs&#39;
+        2=&#39;&gt; 10 yrs&#39;; 
+    value educat
+        1 = &#39;Less than high school&#39;
+        2 = &#39;High school graduate&#39;
+        3 = &#39;Some college/technical school&#39; 
+        4 = &#39;College graduate&#39;;
+    value age50up
+        1 = &#39;50 - 64&#39;
+        2 = &#39;65+&#39;; 
+    value income
+        1 = &#39;&lt; $25,000&#39;
+        2 = &#39;$25,000 - &lt; $50,000&#39; 
+        3 = &#39;$50,000 - &lt; $75,000&#39; 
+        4 = &#39;&gt;= $75,000&#39;
+        5 = &#39;Dont know&#39;;
+    value insureyn
+        1= &#39;insured&#39;
+        0= &#39;uninsured&#39;; 
+    value fambinyn
+        1=&#39;family hx&#39; 
+        0=&#39;no family hx&#39;;
+run;</code></pre>
 </div>
+<div id="r-2" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-5" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="part-b" class="section level3">
+<h3>Part B</h3>
+<div id="research-questions" class="section level4">
+<h4>Research Questions</h4>
+<ul>
+<li>Is insurance status associated with having a colonoscopy in the past 10 years?</li>
+<li>Is family history of colorectal cancer a confounder of the association between insurance status and having a colonoscopy in the past 10 years?</li>
+</ul>
+<hr />
+</div>
+<div id="the-familyhx-variable-has-4-categories-but-for-the-purposes-of-this-exercise-create-a-binary-variable-fambin-which-includes-only-those-with-a-family-history-first-and-second-degree-relatives-and-those-without-none.-re-code-dont-know-responses-to-missing." class="section level4">
+<h4>3. The <code>familyhx</code> variable has 4 categories, but for the purposes of this exercise create a binary variable, <code>fambin</code> which includes only those with a family history (first and second degree relatives) and those without (<code>none</code>). Re-code <code>Don’t Know</code> responses to <code>missing</code>.</h4>
+<p>Also, for the purposes of this exercise we want to create a dichotomous variable for insurance status, <code>insured</code>, based on whether you have any insurance (<code>Yes</code>) or are uninsured (<code>No</code>).</p>
+</div>
+</div>
+</div>
+<div id="section-6" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-3" class="section level2">
+<h2>SAS</h2>
+<p><span style="color:green">Note: We are making a temporary dataset “chs03” from the permanent dataset. You may want to use a temporary dataset to ensure that you do not change the original dataset.</span></p>
+<pre><code>data chs03;
+set epi3.chs03;
+
+format insured insureyn.
+       fambin fambinyn.;
+       
+if insurance IN (1,2,3,4) then insured = 1; /*YES*/ 
+else if insurance = 5 then insured = 0; /*NO*/
+else if insurance = . then insured = .;
+
+if familyhx IN (1,2) then fambin = 1; /*Fam hx*/ 
+else if familyhx = 3 then fambin = 0; /*No family hx*/ 
+else if familyhx = 4 then fambin = .;
+
+run;</code></pre>
+</div>
+<div id="r-3" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-7" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="a.-run-the-code-below-to-see-if-the-re-coding-of-family-history-to-a-binary-variable-was-successful." class="section level4">
+<h4>4A. Run the code below to see if the re-coding of family history to a binary variable was successful.</h4>
+</div>
+</div>
+<div id="section-8" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-4" class="section level2">
+<h2>SAS</h2>
+<p><span style="color:green">Remember that we coded family hx = 1 and no family hx = 0, but since we formatted this variable the variable labels are what you see in the output. This makes it easier than having to remember how you coded all of your variables.</span></p>
+<p><span style="color:green">Those who responded “Don’t Know” are coded as missing with the new dichotomous variable <code>fambin</code>. Participants with first and second degree relatives who have colorectal cancer are correctly coded as <code>yes</code> in the dichotomous family history variable while those reporting <code>None</code> are correctly coded as having no family members with a history of colorectal cancer. </span></p>
+<pre><code>proc freq data = chs03;
+tables familyhx*fambin / list missing; run;</code></pre>
+</div>
+<div id="r-4" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-9" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="b.-run-the-code-below-to-see-if-the-re-coding-of-insurance-to-a-binary-variable-was-successful." class="section level4">
+<h4>4B. Run the code below to see if the re-coding of insurance to a binary variable was successful.</h4>
+</div>
+</div>
+<div id="section-10" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-5" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc freq data = chs03;
+tables insurance*insured / list missing; run;</code></pre>
+</div>
+<div id="r-5" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-11" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="using-the-dichotomous-variable-for-insurance-insured-determine-the-crude-or-for-the-association-between-insurance-and-reporting-having-received-a-timely-colonoscopy-screening." class="section level4">
+<h4>5. Using the dichotomous variable for insurance, <code>insured</code>, determine the crude OR for the association between insurance and reporting having received a timely colonoscopy screening.</h4>
+</div>
+</div>
+<div id="section-12" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-6" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc freq data = chs03;
+table insured*colonoscopy10yr / chisq relrisk; run;</code></pre>
+</div>
+<div id="r-6" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-13" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="examine-the-output-from-question-5-what-do-you-notice-about-the-sample-size-used-in-the-calculation-of-the-or" class="section level4">
+<h4>5.1 Examine the output from Question 5 – what do you notice about the sample size used in the calculation of the OR?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Notice 66% of the data are missing. In this case we would expect that because the CHS dataset includes people 18+ years old and the colonoscopy question was only asked to those 50+ years old. However, typically when you see this warning you should make sure that this many people really should be missing.</span></p>
+</details>
+<hr />
+</div>
+<div id="do-you-have-any-guess-as-to-who-is-the-population-included-in-the-calculation-of-the-or-that-is-what-are-some-possible-reasons-for-the-decrease-in-sample-size-for-this-analysis" class="section level4">
+<h4>5.1 Do you have any guess as to who is the population included in the calculation of the OR – that is, what are some possible reasons for the decrease in sample size for this analysis?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Our population comprises individuals 50 years and older, who answered the insurance question and who answered the Colonoscopy screening question.</span></p>
+<p><span style="color:blue">66% of people in this dataset either:</span></p>
+<p><span style="color:blue">1. Weren’t asked the colonoscopy question<br />
+2. Skipped either the colonoscopy or insurance question<br />
+3. Answered “Don’t Know”<br />
+4. Refused to answer either question.</span></p>
+<p><span style="color:blue">Those who answered don’t know (“D”) or refused (“R) are treated as missing by SAS because there response is coded as .D or .R and SAS treats anything with a “.” at the beginning as missing.</span></p>
+</details>
+<hr />
+</div>
+<div id="among-those-who-answered-the-insurance-question-what-is-the-sample-size-of-adult-new-yorkers-50-years-and-older-that-you-would-expect-to-find-if-there-was-a-100-response-rate-to-the-colonoscopy-question" class="section level4">
+<h4>5.2 Among those who answered the insurance question, what is the sample size of Adult New Yorkers 50 years and older that you would expect to find if there was a 100% response rate to the colonoscopy question?</h4>
+</div>
+</div>
+<div id="section-14" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-7" class="section level2">
+<h2>SAS</h2>
+<p>Using the <code>where insured IN (0,1)</code> line of code limits the <code>proc freq</code> to those who answered the insurance question.</p>
+<pre><code>proc freq data = chs03;
+where insured IN (0,1);
+table age50up / list; run;</code></pre>
+</div>
+<div id="r-7" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-15" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">There are <strong>3650</strong> people who are 50+ years old and who answered the insurance question.</span></p>
+</details>
+<hr />
+<div id="how-does-this-sample-size-compare-with-the-sample-size-that-was-used-to-calculate-the-or-in-q.5" class="section level4">
+<h4>5.2 How does this sample size compare with the sample size that was used to calculate the OR in Q.5?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">* Cumulative frequency (previous output): 3,650<br />
+* “Effective sample size” from Q.5 output: 3,345<br />
+* This means that 305 individuals aged 50+ years did not answer the colonoscopy question.</span></p>
+</details>
+<hr />
+</div>
+<div id="under-what-circumstances-would-the-non-response-shown-in-q5-cause-bias" class="section level4">
+<h4>5.3 Under what circumstances would the non response shown in Q5 cause bias?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The OR would be biased only if the non-response was dependent on both exposure and disease status.</span></p>
+</details>
+<hr />
+</div>
+<div id="criterion-1-is-family-history-associated-with-the-outcome-among-the-unexposed" class="section level4">
+<h4>6. Criterion 1: Is family history associated with the outcome among the unexposed?</h4>
+<p>Now we want to use stratified analysis methods to determine whether family history may be a confounder of the relationship between insurance and colonoscopy screening and whether we need to adjust for it in our final analysis.</p>
+<p>The first step is to assess whether family history meets the criteria for a potential confounder.</p>
+<hr />
+<p>A. What is the outcome in this example?</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Those who have received a Colonoscopy Screening in the past 10 years.</span></p>
+</details>
+<p>
+<p>B. Who are the “unexposed”?</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Uninsured (simply because we coded <code>uninsured = 0</code> and <code>insured = 1</code>, it could be the other way around)</span></p>
+</details>
+<hr />
+</div>
+<div id="now-run-the-code-below-to-see-if-criterion-1-is-fulfilled.-what-is-the-odds-ratio-and-95-confidence-interval" class="section level4">
+<h4>6. Now run the code below to see if criterion 1 is fulfilled. What is the Odds Ratio and 95% Confidence Interval?</h4>
+</div>
+</div>
+<div id="section-16" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-8" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc freq data = chs03;
+where insured = 0;
+tables fambin*colonoscopy10yr / chisq relrisk; run;</code></pre>
+</div>
+<div id="r-8" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-17" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>1.59</strong>. The 95% Confidence Interval is <strong>0.67 - 3.77</strong></span></p>
+</details>
+<hr />
+<div id="criterion-2-is-family-history-associated-with-the-exposure" class="section level4">
+<h4>6. Criterion 2: Is family history associated with the exposure?</h4>
+<p>Now run the code below to see if criterion 2 is fulfilled. What is the Odds Ratio and 95% Confidence Interval?</p>
+</div>
+</div>
+<div id="section-18" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-9" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc freq data = chs03;
+tables fambin*insured / chisq relrisk; run;</code></pre>
+</div>
+<div id="r-9" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-19" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>1.24</strong>. The 95% Confidence Interval is <strong>1.08 - 1.41</strong></span></p>
+</details>
+<hr />
+<div id="criterion-3-could-family-history-be-a-mediator-in-the-pathway-of-interest" class="section level4">
+<h4>6. Criterion 3: Could family history be a mediator in the pathway of interest?</h4>
+<p>This doesn’t require any coding or statistics. Simply asked, could insurance status lead to a family history of colorectal cancer which then leads to a colonoscopy?</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Insurance (X) -&gt; Family History (M) -&gt; Colonoscopy screening (Y)</span><br />
+<span style="color:blue">No, family history does not act as a mediator between insurance and colonoscopy screening</span></p>
+</details>
+<hr />
+</div>
+<div id="does-family-history-meet-the-criteria-for-a-potential-confounder" class="section level4">
+<h4>7. Does family history meet the criteria for a potential confounder?</h4>
+<hr />
+<div id="criterion-1-is-family-history-associated-with-the-outcome-among-the-unexposed-1" class="section level5">
+<h5>Criterion 1: Is family history associated with the outcome among the unexposed?</h5>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>1.59</strong>. The 95% Confidence Interval is <strong>0.67 - 3.77</strong></span></p>
+</details>
+<hr />
+</div>
+<div id="criterion-2-is-family-history-associated-with-exposure" class="section level5">
+<h5>Criterion 2: Is family history associated with exposure?</h5>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>1.24</strong>. The 95% Confidence Interval is <strong>1.08 - 1.41</strong></span></p>
+</details>
+<hr />
+</div>
+<div id="criterion-3-could-family-history-be-a-mediator-in-the-pathway-of-interest-1" class="section level5">
+<h5>Criterion 3: Could family history be a mediator in the pathway of interest?</h5>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">No</span></p>
+</details>
+<hr />
+</div>
+</div>
+<div id="does-family-history-meet-the-criteria-for-a-potential-confounder-1" class="section level4">
+<h4>7. Does family history meet the criteria for a potential confounder?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Yes, even though family history was not significantly associated with the outcome among the unexposed. Statistical significance by itself is not the deciding factor when you are assessing whether a variable is a potential confounder.</span></p>
+</details>
+<hr />
+</div>
+<div id="what-do-you-hypothesize-is-the-direction-of-the-potential-confounding-i.e.-is-the-crude-closer-to-the-null-or-farther-from-the-null-than-the-adjusted" class="section level4">
+<h4>8. What do you hypothesize is the direction of the potential confounding (i.e. is the crude closer to the null or farther from the null than the adjusted)?</h4>
+<hr />
+</div>
+<div id="stratify-the-data-by-fambin-and-calculate-a-mantel-haenszel-summary-odds-ratio." class="section level4">
+<h4>9. Stratify the data by <code>fambin</code> and calculate a Mantel-Haenszel Summary Odds Ratio.</h4>
+</div>
+</div>
+<div id="section-20" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-10" class="section level2">
+<h2>SAS</h2>
+<p><span style="color:green">The <code>cmh</code> code gives the MH Summary Odds Ratio.</span></p>
+<pre><code>proc freq data = chs03 order = formatted;
+tables fambin*insured*colonoscopy10yr / chisq relrisk cmh; run;</code></pre>
+</div>
+<div id="r-10" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-21" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<p>Among those <em>with</em> Fam Hx, the Odds Ratio and 95% Confidence Interval is:</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>3.23</strong>. The 95% Confidence Interval is <strong>1.96 - 5.33</strong></span></p>
+</details>
+<p>
+<p>Among those <em>without</em> Fam Hx, the Odds Ratio and 95% Confidence Interval is:</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The Odds Ratio (OR) is <strong>3.73</strong>. The 95% Confidence Interval is <strong>1.82 - 7.67</strong></span></p>
+</details>
+<p>
+<p>The Mantel-Haenszel (MH) Summary Odds Ratio and 95% Confidence Interval is:</p>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">The MH Odds Ratio (OR) is <strong>3.40</strong>. The 95% Confidence Interval is <strong>2.25 - 5.12</strong></span></p>
+</details>
 </div>
 
 

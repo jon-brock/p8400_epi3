@@ -47,11 +47,15 @@ Incomegroup | 1 = $\leq$ \$25,000 <br> 2 = \$25,000 - $\lt$ \$50,000 <br> 3 = \$
 ```{}
 libname Epi3 'F:\EPI_III_2017'
 ```
-
+  
 ## R  
+In R, we do not need to worry about `libnames`, as we use an entirely different system of data import.  
 
+```{r}
+# Code to be entered later  
+```
 
-</div>  
+# {-}
 
 ***  
 
@@ -66,6 +70,14 @@ proc contents data = Epi3.chs03;
 run;
 ```
 
+## R  
+
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
 ***  
 
 **PROC FORMAT**  
@@ -73,6 +85,467 @@ run;
 * `proc format` is a procedure that creates mappings of data values into data labels.
 * The user defined **FORMAT** mapping is independent of a `SAS` dataset.
 * **DATASET**: <span style="color:purple">CHS03.sas7bdat</span> 
-* This dataset has user defined formats. You have to run the following format code in order to open up the dataset.  
+* This dataset has user defined formats. You have to run the following format code in order to open up the dataset. 
 
-## R
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+<span style="color:green">**Note**: if you have a dataset with permanent formats, but you don't have the format library, then you can use the code `options nofmterr` to open the dataset. This statement should be placed at the top of your program (before the `libname`)</span>  
+
+```{}
+proc format; 
+    value sex
+        1 = 'Male'
+        2 = 'Female'; 
+    value famhx
+        1 = 'First degree relative'
+        2 = 'Second degree relative'
+        3 = 'No relatives with col. cancer' 
+        4 = 'Don''t Know';
+    value que
+        1 = 'Private'
+        2 = 'Medicare' 
+        3 = 'Medicaid' 
+        4 = 'Other'
+        5 = 'Uninsured';
+    value colon
+        1='<= 10 yrs'
+        2='> 10 yrs'; 
+    value educat
+        1 = 'Less than high school'
+        2 = 'High school graduate'
+        3 = 'Some college/technical school' 
+        4 = 'College graduate';
+    value age50up
+        1 = '50 - 64'
+        2 = '65+'; 
+    value income
+        1 = '< $25,000'
+        2 = '$25,000 - < $50,000' 
+        3 = '$50,000 - < $75,000' 
+        4 = '>= $75,000'
+        5 = 'Dont know';
+    value insureyn
+        1= 'insured'
+        0= 'uninsured'; 
+    value fambinyn
+        1='family hx' 
+        0='no family hx';
+run;
+```
+
+## R  
+
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+***  
+
+### Part B  
+#### Research Questions  
+
+* Is insurance status associated with having a colonoscopy in the past 10 years?
+* Is family history of colorectal cancer a confounder of the association between insurance status and having a colonoscopy in the past 10 years?  
+
+***  
+
+#### 3. The `familyhx` variable has 4 categories, but for the purposes of this exercise create a binary variable, `fambin` which includes only those with a family history (first and second degree relatives) and those without (`none`). Re-code `Don’t Know` responses to `missing`.  
+
+Also, for the purposes of this exercise we want to create a dichotomous variable for insurance status, `insured`, based on whether you have any insurance (`Yes`) or are uninsured (`No`).  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+<span style="color:green">Note: We are making a temporary dataset "chs03" from the permanent dataset. You may want to use a temporary dataset to ensure that you do not change the original dataset.</span>  
+
+```{}
+data chs03;
+set epi3.chs03;
+
+format insured insureyn.
+       fambin fambinyn.;
+       
+if insurance IN (1,2,3,4) then insured = 1; /*YES*/ 
+else if insurance = 5 then insured = 0; /*NO*/
+else if insurance = . then insured = .;
+
+if familyhx IN (1,2) then fambin = 1; /*Fam hx*/ 
+else if familyhx = 3 then fambin = 0; /*No family hx*/ 
+else if familyhx = 4 then fambin = .;
+
+run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+***  
+
+#### 4A. Run the code below to see if the re-coding of family history to a binary variable was successful.  
+
+# {.tabset .tabset-fade}  
+
+## SAS
+
+<span style="color:green">Remember that we coded family hx = 1 and no family hx = 0, but since we formatted this variable the variable labels are what you see in the output. This makes it easier than having to remember how you coded all of your variables.</span>  
+
+<span style="color:green">Those who responded “Don’t Know” are coded as missing with the new dichotomous variable `fambin`. Participants with first and second degree relatives who have colorectal cancer are correctly coded as `yes` in the dichotomous family history variable while those reporting `None` are correctly coded as having no family members with a history of colorectal cancer. </span>  
+
+```{}
+proc freq data = chs03;
+tables familyhx*fambin / list missing; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}  
+
+***  
+
+#### 4B. Run the code below to see if the re-coding of insurance to a binary variable was successful.  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc freq data = chs03;
+tables insurance*insured / list missing; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+***  
+
+#### 5. Using the dichotomous variable for insurance, `insured`, determine the crude OR for the association between insurance and reporting having received a timely colonoscopy screening.  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc freq data = chs03;
+table insured*colonoscopy10yr / chisq relrisk; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+***  
+
+#### 5.1 Examine the output from Question 5 – what do you notice about the sample size used in the calculation of the OR?  
+<details>
+<summary>*Show answer*</summary>  
+<p>
+
+<span style="color:blue">Notice 66% of the data are missing. In this case we would expect that because the CHS dataset includes people 18+ years old and the colonoscopy question was only asked to those 50+ years old. However, typically when you see this warning you should make sure that this many people really should be missing.</span>  
+
+</details>
+
+***  
+
+#### 5.1 Do you have any guess as to who is the population included in the calculation of the OR – that is, what are some possible reasons for the decrease in sample size for this analysis?  
+
+<details>
+<summary>*Show answer*</summary>  
+<p>
+
+<span style="color:blue">Our population comprises individuals 50 years and older, who answered the insurance question and who answered the Colonoscopy screening question.</span>  
+
+<span style="color:blue">66% of people in this dataset either:</span>  
+
+<span style="color:blue">1. Weren’t asked the colonoscopy question  
+2. Skipped either the colonoscopy or insurance question  
+3. Answered “Don’t Know”  
+4. Refused to answer either question.</span>  
+
+<span style="color:blue">Those who answered don’t know (“D”) or refused (“R) are treated as missing by SAS because there response is coded as .D or .R and SAS treats anything with a “.” at the beginning as missing.</span>  
+
+</details>  
+
+***  
+
+#### 5.2 Among those who answered the insurance question, what is the sample size of Adult New Yorkers 50 years and older that you would expect to find if there was a 100% response rate to the colonoscopy question?  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+Using the `where insured IN (0,1)` line of code limits the `proc freq` to those who answered the insurance question.  
+
+```{}
+proc freq data = chs03;
+where insured IN (0,1);
+table age50up / list; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+<details>
+<summary>*Show answer*</summary>
+<p>  
+
+<span style="color:blue">There are **3650** people who are 50+ years old and who answered the insurance question.</span>  
+
+</details>
+
+***  
+
+#### 5.2 How does this sample size compare with the sample size that was used to calculate the OR in Q.5?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">* Cumulative frequency (previous output): 3,650  
+* “Effective sample size” from Q.5 output: 3,345  
+* This means that 305 individuals aged 50+ years did not answer the colonoscopy question.</span>  
+
+</details>
+
+***  
+
+#### 5.3 Under what circumstances would the non response shown in Q5 cause bias?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">The OR would be biased only if the non-response was dependent on both exposure and disease status.</span>  
+
+</details>  
+
+***  
+
+#### 6. Criterion 1: Is family history associated with the outcome among the unexposed?  
+
+Now we want to use stratified analysis methods to determine whether family history may be a confounder of the relationship between insurance and colonoscopy screening and whether we need to adjust for it in our final analysis.
+
+The first step is to assess whether family history meets the criteria for a potential confounder. 
+
+***  
+
+A. What is the outcome in this example?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Those who have received a Colonoscopy Screening in the past 10 years.</span>  
+
+</details>
+
+<p>
+B. Who are the “unexposed”?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Uninsured (simply because we coded `uninsured = 0` and `insured = 1`, it could be the other way around)</span>  
+
+</details>  
+
+***  
+
+#### 6. Now run the code below to see if criterion 1 is fulfilled.  What is the Odds Ratio and 95% Confidence Interval?  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc freq data = chs03;
+where insured = 0;
+tables fambin*colonoscopy10yr / chisq relrisk; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **1.59**. The 95% Confidence Interval is **0.67 - 3.77**</span>  
+
+</details>  
+
+***  
+
+#### 6. Criterion 2: Is family history associated with the exposure?  
+
+Now run the code below to see if criterion 2 is fulfilled. What is the Odds Ratio and 95% Confidence Interval?  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc freq data = chs03;
+tables fambin*insured / chisq relrisk; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}  
+
+<details>
+<summary>*Show answer*</summary>
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **1.24**. The 95% Confidence Interval is **1.08 - 1.41**</span>  
+
+</details>  
+
+***  
+
+#### 6. Criterion 3: Could family history be a mediator in the pathway of interest?  
+
+This doesn't require any coding or statistics. Simply asked, could insurance status lead to a family history of colorectal cancer which then leads to a colonoscopy?  
+
+<details>
+<summary>*Show answer*</summary>
+<p>
+
+<span style="color:blue">Insurance (X) -> Family History (M) -> Colonoscopy screening (Y)</span>  
+<span style="color:blue">No, family history does not act as a mediator between insurance and colonoscopy screening</span>  
+
+</details>  
+
+***  
+
+#### 7. Does family history meet the criteria for a potential confounder?  
+
+***  
+
+##### Criterion 1: Is family history associated with the outcome among the unexposed?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **1.59**. The 95% Confidence Interval is **0.67 - 3.77**</span>  
+
+</details>
+***
+
+##### Criterion 2: Is family history associated with exposure?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **1.24**. The 95% Confidence Interval is **1.08 - 1.41**</span>  
+
+</details>
+***  
+
+##### Criterion 3: Could family history be a mediator in the pathway of interest?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">No</span>  
+
+</details>  
+
+***  
+
+#### 7. Does family history meet the criteria for a potential confounder?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Yes, even though family history was not significantly associated with the outcome among the unexposed. Statistical significance by itself is not the deciding factor when you are assessing whether a variable is a potential confounder.</span>  
+
+</details>  
+
+***  
+
+#### 8. What do you hypothesize is the direction of the potential confounding (i.e. is the crude closer to the null or farther from the null than the adjusted)?  
+
+***  
+
+#### 9. Stratify the data by `fambin` and calculate a Mantel-Haenszel Summary Odds Ratio.  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+<span style="color:green">The `cmh` code gives the MH Summary Odds Ratio.</span>  
+
+```{}
+proc freq data = chs03 order = formatted;
+tables fambin*insured*colonoscopy10yr / chisq relrisk cmh; run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}  
+
+Among those *with* Fam Hx, the Odds Ratio and 95% Confidence Interval is:  
+
+<details>
+<summary>*Show answer*</summary>
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **3.23**. The 95% Confidence Interval is **1.96 - 5.33**</span>  
+
+</details>  
+
+<p>
+Among those *without* Fam Hx, the Odds Ratio and 95% Confidence Interval is:  
+
+<details>
+<summary>*Show answer*</summary>
+<p>
+
+<span style="color:blue">The Odds Ratio (OR) is **3.73**. The 95% Confidence Interval is **1.82 - 7.67**</span>
+
+</details>
+
+<p>
+The Mantel-Haenszel (MH) Summary Odds Ratio and 95% Confidence Interval is:  
+
+<details>
+<summary>*Show answer*</summary>
+<p>
+
+<span style="color:blue">The MH Odds Ratio (OR) is **3.40**. The 95% Confidence Interval is **2.25 - 5.12**</span>
+
+</details>
