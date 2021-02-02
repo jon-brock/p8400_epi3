@@ -1,3 +1,78 @@
+---
+title: "Lab 2: Bias "
+output: html_document
+---  
+
+### Lab Learning Objectives  
+- Introduce cross-sectional survey of health in New York City SAS dataset (`chs03.sas7bdat`)  
+- Practice importing the data into SAS  
+- Assess confounding in a stratified analysis using SAS and determine whether a covariate fulfills the criteria for a confounder  
+
+In this lab we will investigate the association between health insurance status and having had a colonoscopy in the past 10 years. We will examine the role of family history as a potential confounder of the association between health insurance and having received a timely colonoscopy.  
+
 ***  
-### Bias  
+
+### The New York City Community Health Survey (CHS)  
+- The CHS is a telephone survey conducted annually by the DOHMH, Division of Epidemiology, Bureau of Epidemiology Services, NYC. This cross-sectional survey samples approximately 10,000 adults aged 18 and older from all five boroughs of New York City.  
+- A computer-assisted telephone interviewing (CATI) system is used to collect survey data, and interviews are conducted in several languages. All data collected are self-reported. The CHS03 dataset is publicly available, includes data from the 2003 New York City Community Health Survey (CHS).  
+- The `chs03.sas7bdat` dataset can be downloaded here (ADD LINK).
+
 ***  
+
+### Data dictionary for CHS03 dataset  
+
+Variable Name | Format |  
+--- | --- |  
+Sex | 1 = Male <br> 2 = Female |  
+FamilyHx | 1 = First degree relative <br> 2 = Second degree relative <br> 3 = None <br> 4 = Don't know |  
+Insurance | 1 = Private <br> 2 = Medicare <br> 3 = Medicaid <br> 4 = Other <br> 5 = Uninsured |  
+Education | 1 = Less than high school <br> 2 = High school graduate <br> 3 = Some college/technical school <br> 4 = College graduate |  
+Age50up | 1 = 50-64 <br> 2 = 65+ |  
+Colonoscopy10yr | 1 = $\leq$ 10 years since last colonoscopy <br> 2 = $\gt$ 10 years since last colonoscopy |  
+Incomegroup | 1 = $\leq$ \$25,000 <br> 2 = \$25,000 - $\lt$ \$50,000 <br> 3 = \$50,000 - $\lt$ \$75,000 <br> 4 = $\geq$ \$75,000 <br> 5 = Don't know |  
+
+***  
+
+#### 1. Importing dataset to SAS  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+<span style="color:blue">Assigning libnames in SAS</span>  
+
+* Direct SAS to the location of your data  
+* SAS calls a directory or folder a *library* and assigns "nicknames" to these libraries  
+* Libname command directs SAS to the location of data and will assign a nickname  
+
+```{}
+libname Epi3 'F:\EPI_III_2017'
+```
+
+## R  
+
+
+</div>  
+
+***  
+
+#### 2. Run `PROC CONTENTS` to see if the datasets loaded properly/if your `LIBNAME` was successfully assigned  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+```{}
+proc contents data = Epi3.chs03;
+run;
+```
+
+***  
+
+**PROC FORMAT**  
+
+* `proc format` is a procedure that creates mappings of data values into data labels.
+* The user defined **FORMAT** mapping is independent of a `SAS` dataset.
+* **DATASET**: <span style="color:purple">CHS03.sas7bdat</span> 
+* This dataset has user defined formats. You have to run the following format code in order to open up the dataset.  
+
+## R

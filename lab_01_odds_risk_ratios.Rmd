@@ -1,5 +1,5 @@
 ---
-title: "Review of Odds and Risk Ratios"
+title: "Lab 1: Review of Odds and Risk Ratios"
 output: html_document
 ---  
 

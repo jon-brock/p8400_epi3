@@ -11,7 +11,7 @@
 
 
 
-<title>lab_02_bias.utf8</title>
+<title>Lab 2: Bias</title>
 
 <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -344,14 +344,124 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Lab 2: Bias</h1>
 
 </div>
 
 
+<div id="lab-learning-objectives" class="section level3">
+<h3>Lab Learning Objectives</h3>
+<ul>
+<li>Introduce cross-sectional survey of health in New York City SAS dataset (<code>chs03.sas7bdat</code>)<br />
+</li>
+<li>Practice importing the data into SAS<br />
+</li>
+<li>Assess confounding in a stratified analysis using SAS and determine whether a covariate fulfills the criteria for a confounder</li>
+</ul>
+<p>In this lab we will investigate the association between health insurance status and having had a colonoscopy in the past 10 years. We will examine the role of family history as a potential confounder of the association between health insurance and having received a timely colonoscopy.</p>
 <hr />
-<div id="bias" class="section level3">
-<h3>Bias</h3>
+</div>
+<div id="the-new-york-city-community-health-survey-chs" class="section level3">
+<h3>The New York City Community Health Survey (CHS)</h3>
+<ul>
+<li>The CHS is a telephone survey conducted annually by the DOHMH, Division of Epidemiology, Bureau of Epidemiology Services, NYC. This cross-sectional survey samples approximately 10,000 adults aged 18 and older from all five boroughs of New York City.<br />
+</li>
+<li>A computer-assisted telephone interviewing (CATI) system is used to collect survey data, and interviews are conducted in several languages. All data collected are self-reported. The CHS03 dataset is publicly available, includes data from the 2003 New York City Community Health Survey (CHS).<br />
+</li>
+<li>The <code>chs03.sas7bdat</code> dataset can be downloaded here (ADD LINK).</li>
+</ul>
 <hr />
+</div>
+<div id="data-dictionary-for-chs03-dataset" class="section level3">
+<h3>Data dictionary for CHS03 dataset</h3>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sex</td>
+<td>1 = Male <br> 2 = Female</td>
+</tr>
+<tr class="even">
+<td>FamilyHx</td>
+<td>1 = First degree relative <br> 2 = Second degree relative <br> 3 = None <br> 4 = Don’t know</td>
+</tr>
+<tr class="odd">
+<td>Insurance</td>
+<td>1 = Private <br> 2 = Medicare <br> 3 = Medicaid <br> 4 = Other <br> 5 = Uninsured</td>
+</tr>
+<tr class="even">
+<td>Education</td>
+<td>1 = Less than high school <br> 2 = High school graduate <br> 3 = Some college/technical school <br> 4 = College graduate</td>
+</tr>
+<tr class="odd">
+<td>Age50up</td>
+<td>1 = 50-64 <br> 2 = 65+</td>
+</tr>
+<tr class="even">
+<td>Colonoscopy10yr</td>
+<td>1 = <span class="math inline">\(\leq\)</span> 10 years since last colonoscopy <br> 2 = <span class="math inline">\(\gt\)</span> 10 years since last colonoscopy</td>
+</tr>
+<tr class="odd">
+<td>Incomegroup</td>
+<td>1 = <span class="math inline">\(\leq\)</span> $25,000 <br> 2 = $25,000 - <span class="math inline">\(\lt\)</span> $50,000 <br> 3 = $50,000 - <span class="math inline">\(\lt\)</span> $75,000 <br> 4 = <span class="math inline">\(\geq\)</span> $75,000 <br> 5 = Don’t know</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="importing-dataset-to-sas" class="section level4">
+<h4>1. Importing dataset to SAS</h4>
+</div>
+</div>
+<div id="section" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas" class="section level2">
+<h2>SAS</h2>
+<p><span style="color:blue">Assigning libnames in SAS</span></p>
+<ul>
+<li>Direct SAS to the location of your data<br />
+</li>
+<li>SAS calls a directory or folder a <em>library</em> and assigns “nicknames” to these libraries<br />
+</li>
+<li>Libname command directs SAS to the location of data and will assign a nickname</li>
+</ul>
+<pre><code>libname Epi3 &#39;F:\EPI_III_2017&#39;</code></pre>
+</div>
+<div id="r" class="section level2">
+<h2>R</h2>
+</div>
+<hr />
+<div id="run-proc-contents-to-see-if-the-datasets-loaded-properlyif-your-libname-was-successfully-assigned" class="section level4">
+<h4>2. Run <code>PROC CONTENTS</code> to see if the datasets loaded properly/if your <code>LIBNAME</code> was successfully assigned</h4>
+</div>
+</div>
+</div>
+<div id="section-1" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-1" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc contents data = Epi3.chs03;
+run;</code></pre>
+<hr />
+<p><strong>PROC FORMAT</strong></p>
+<ul>
+<li><code>proc format</code> is a procedure that creates mappings of data values into data labels.</li>
+<li>The user defined <strong>FORMAT</strong> mapping is independent of a <code>SAS</code> dataset.</li>
+<li><strong>DATASET</strong>: <span style="color:purple">CHS03.sas7bdat</span></li>
+<li>This dataset has user defined formats. You have to run the following format code in order to open up the dataset.</li>
+</ul>
+</div>
+<div id="r-1" class="section level2">
+<h2>R</h2>
+</div>
 </div>
 
 
