@@ -11,7 +11,7 @@
 
 
 
-<title>lab_06_kaplan_meier.utf8</title>
+<title>Lab 6: Kaplan Meier Survival Analysis</title>
 
 <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -332,22 +332,22 @@ $(document).ready(function () {
       <a href="datasets/adult_bmi.sas7bdat">Adult BMI</a>
     </li>
     <li>
-      <a href="datasets/chs03.sas7bdat">Community Health Survey (chs03.sas7bdat)</a>
+      <a href="datasets/chs03.sas7bdat">Community Health Survey</a>
     </li>
     <li>
-      <a href="datasets/crp_angina.sas7bdat">C-Reactive Protein Angina (crp_angina.sas7bdat)</a>
+      <a href="datasets/crp_angina.sas7bdat">C-Reactive Protein Angina</a>
     </li>
     <li>
-      <a href="datasets/hivhepc.sas7bdat">HIV/HCV (hivhepc.sas7bdat)</a>
+      <a href="datasets/hivhepc.sas7bdat">HIV/HCV</a>
     </li>
     <li>
-      <a href="datasets/lab9_gee.sas7bdat">GEE (lab9_gee.sas7bdat)</a>
+      <a href="datasets/lab9_gee.sas7bdat">Generalized Estimating Equations</a>
     </li>
     <li>
-      <a href="datasets/metaanlysis.xls">Meta-Analysis (metaanlysis.xls)</a>
+      <a href="datasets/metaanlysis.xls">Meta-Analysis</a>
     </li>
     <li>
-      <a href="datasets/montana.txt">Montana (montana.txt)</a>
+      <a href="datasets/montana.txt">Montana</a>
     </li>
   </ul>
 </li>
@@ -371,14 +371,353 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Lab 6: Kaplan Meier Survival Analysis</h1>
 
 </div>
 
 
+<div id="lab-learning-objectives" class="section level3">
+<h3>Lab Learning Objectives</h3>
+<ul>
+<li>To estimate survival function and median survival time</li>
+<li>Plot <em>Kaplan-Meier</em> survival curve using SAS</li>
+<li>Statistically compare survival curves</li>
+</ul>
 <hr />
-<div id="kaplan-meier-survival-analysis" class="section level3">
-<h3>Kaplan Meier Survival Analysis</h3>
+</div>
+<div id="dataset" class="section level3">
+<h3>Dataset</h3>
+<ul>
+<li><code>hivhepc.sas7bdat</code> - <span style="color:purple">This dataset will also be used for Lab 7</span></li>
+<li>Cohort study on human immunodeficiency virus (HIV) infection</li>
+<li>Includes medical, behavioral, and epidemiologic information from HIV positive individuals</li>
+<li><em>Research question</em>: Whether having a diagnosis of hepatitis C is associated with a shorter median survival time?</li>
+</ul>
 <hr />
+</div>
+<div id="data-dictionary-of-the-hivhepc-dataset" class="section level3">
+<h3>Data dictionary of the HIVHepC dataset</h3>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>patient</td>
+<td>Identifier for the Amsterdam Cohort Studies participant</td>
+<td>Random number</td>
+</tr>
+<tr class="even">
+<td>MSM</td>
+<td>Men who have sex with men</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+<tr class="odd">
+<td>IVDrugUse</td>
+<td>History of drug use</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+<tr class="even">
+<td>ART_init</td>
+<td>Has ART been initiated?</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+<tr class="odd">
+<td>HepC</td>
+<td>Is the patient HepC positive?</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+<tr class="even">
+<td>cohort_date</td>
+<td>Date of enrollment into cohort anonymous <br> (changed to 1st day of month) - HIV diagnosis</td>
+<td>dd-mm-yyyy</td>
+</tr>
+<tr class="odd">
+<td>death</td>
+<td>Has the subject died?</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+<tr class="even">
+<td>last_alive_date</td>
+<td>Date last alive anonymous <br> (changed to 1st day of month)</td>
+<td>dd-mm-yyyy</td>
+</tr>
+<tr class="odd">
+<td>death_date</td>
+<td>Date of death anonymous <br> (changed to 1st day of month)</td>
+<td>dd-mm-yyyy</td>
+</tr>
+<tr class="even">
+<td>age</td>
+<td>Age of patient at the last clinical visit</td>
+<td>99 (years)</td>
+</tr>
+<tr class="odd">
+<td>HIV_diag_1996</td>
+<td>Was HIV diagnosed before 1996?</td>
+<td>0 = No <br> 1 = Yes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="copy-the-hivhepc.sas7bdat-from-courseworks-to-your-flash-drives-or-desktop." class="section level5">
+<h5>Copy the <code>HIVHepC.sas7bdat</code> from Courseworks to your flash drives or desktop.</h5>
+</div>
+</div>
+<div id="section" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas" class="section level2">
+<h2>SAS</h2>
+<p>In the <code>libname</code> statement, the <code>...</code> denote the path to your folder with HIVHepC data.</p>
+<pre><code>libname Epi3 &#39;...’;
+data hivhepc;
+set Epi3.hivhepc;
+run;</code></pre>
+</div>
+<div id="r" class="section level2">
+<h2>R</h2>
+<p>First, we will need to load all necessary packages for our data analysis.</p>
+<pre class="r"><code>library(tidyverse) # For data cleaning and tidying  
+library(haven) # For importing SAS dataset(s)  
+library(survival) # For our Kaplan Meier survival analysis
+library(survminer) # For K-M survival analysis plotting  </code></pre>
+<p>Next, we will import the <code>hivhepc</code> dataset and ‘tidy’ the variable names.</p>
+<pre class="r"><code>hivhepc &lt;- read_sas(&#39;./datasets/hivhepc.sas7bdat&#39;) %&gt;% 
+    janitor::clean_names()</code></pre>
+<p>We can see from our <code>Global Environment</code> that the import was successful.</p>
+</div>
+</div>
+<div id="section-1" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="how-many-observations-are-in-the-data" class="section level4">
+<h4>1. How many observations are in the data?</h4>
+</div>
+</div>
+<div id="section-2" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-1" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc contents data = hivhepc; run;</code></pre>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">TEXT HERE</span></p>
+</details>
+</div>
+<div id="r-1" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Number of observations (or rows) 
+nrow(hivhepc)
+
+# Number of variables (or columns) 
+ncol(hivhepc)</code></pre>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">There are 329 observations and 11 variables.</span></p>
+</details>
+</div>
+</div>
+<div id="section-3" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="how-many-msm-and-how-many-intravenous-drug-users-how-many-have-both-risk-factors-how-many-have-neither" class="section level4">
+<h4>2. How many MSM and how many intravenous drug users? How many have both risk factors? How many have neither?</h4>
+</div>
+</div>
+<div id="section-4" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-2" class="section level2">
+<h2>SAS</h2>
+<pre><code># Code to be entered later  </code></pre>
+</div>
+<div id="r-2" class="section level2">
+<h2>R</h2>
+<pre class="r"><code>msm_count &lt;- hivhepc %&gt;% janitor::tabyl(msm)
+ivdruguser_count &lt;- hivhepc %&gt;% janitor::tabyl(ivdruguse)
+msm_and_ivdu_count &lt;- hivhepc %&gt;% janitor::tabyl(msm, ivdruguse)</code></pre>
+</div>
+</div>
+<div id="section-5" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="how-many-of-the-participants-have-had-a-diagnosis-of-hepatitis-c" class="section level4">
+<h4>3. How many of the participants have had a diagnosis of Hepatitis C?</h4>
+<hr />
+</div>
+<div id="in-a-cohort-study-what-are-the-four-events-that-would-determine-when-an-individual-stops-contributing-person-time" class="section level4">
+<h4>4. In a cohort study, what are the four events that would determine when an individual stops contributing person-time?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">– Person dies<br />
+– Person develops the disease of interest<br />
+– Person is lost to follow-up<br />
+– Study period ends</span></p>
+</details>
+<hr />
+</div>
+<div id="is-this-is-a-closed-or-open-cohort-how-would-we-examine-the-data-to-determine-this" class="section level4">
+<h4>5. Is this is a closed or open cohort? How would we examine the data to determine this?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">– Check to see if the follow up time is the same for all subjects that did not die<br />
+– The enrollment date (cohort_date) and the last follow-up date (last_alive_date) would be same<br />
+– If it were a closed cohort, there would be no losses to follow up</span></p>
+<p><span style="color:blue">Note that it is possible to have some variability in enrollment date (because it’s not always possible to enroll large cohorts in a single day!) but in general, closed cohorts have a single enrollment event/period, and the same length of follow-up for all those that do not have the event of interest.</span></p>
+</details>
+<hr />
+</div>
+</div>
+<div id="section-6" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-3" class="section level2">
+<h2>SAS</h2>
+<pre><code>/*Question 5*/
+proc freq data = hivhepc;
+table cohort_date*last_alive_date / list;
+where death = 0;
+run;</code></pre>
+<p>You can see from a sample of the <code>PROC FREQ</code> output that <code>cohort_date</code> varies for participants. In addition, the <code>last_alive_date</code> is different for all participants. In a closed cohort we would expect that all participants would have the same cohort start date and the same last_alive_date (for participants who did not die).</p>
+</div>
+<div id="r-3" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-7" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="the-amount-of-time-each-member-of-the-cohort-is-followed-is-not-provided-for-you.-using-the-variables-provided-how-would-you-calculate-it" class="section level4">
+<h4>6. The amount of time each member of the cohort is followed is not provided for you. Using the variables provided how would you calculate it?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">- Among people who died, subtract enrollment date (cohort_date) from date of death<br />
+- Among people who did not die, subtract enrollment date from last date alive</span></p>
+<p><span style="color:blue">Note: To be able to subtract dates to get the days of follow- up, the dates must be in the same format, e.g. MMDDYYYY, MMYYYY, etc.</span></p>
+</details>
+</div>
+</div>
+<div id="section-8" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-4" class="section level2">
+<h2>SAS</h2>
+<p>Calculate person year using SAS</p>
+<pre><code>data hivhepc2;
+set hivhepc;
+
+if death = 1 then days = death_date - cohort_date;
+else if death = 0 then days = last_alive_date - cohort_date;
+pyears = days/365.25; *gives time-to-event in years;
+
+run; </code></pre>
+<p><span style="color:blue">We convert to years for best interpretability, but other units could be used.</span></p>
+<p>Check your work:</p>
+<pre><code>proc freq data = hivhepc2;
+table death_date*cohort_date*pyears / list missing nocum nofreq nopercent;
+run;
+
+proc freq data = hivhepc2;
+table last_alive_date*cohort_date*pyears / list missing nocum nofreq nopercent;
+run;
+
+proc freq data = hivhepc2;
+table pyears;
+run;</code></pre>
+</div>
+<div id="r-4" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-9" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<hr />
+<div id="part-ii" class="section level3">
+<h3>Part II</h3>
+<hr />
+<div id="how-many-people-had-died-at-the-end-of-follow-up-how-many-people-were-censored-did-not-have-the-event-of-interest" class="section level4">
+<h4>1. How many people had died at the end of follow-up? How many people were censored (did not have the event of interest)?</h4>
+</div>
+</div>
+</div>
+<div id="section-10" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade"></h1>
+<div id="sas-5" class="section level2">
+<h2>SAS</h2>
+<pre><code>proc lifetest 
+    data = hivhepc2
+    method = km
+    plots = (s)
+    graphics; 
+    time pyears*death(0);
+run;</code></pre>
+<p><span style="color:blue"><code>pyears</code> is the time variable <br> <code>death</code> is the event (<code>Death = 1</code>) <br> <code>(0)</code> is the censored value (<code>Death = 0</code>)</span></p>
+</div>
+<div id="r-5" class="section level2">
+<h2>R</h2>
+<pre class="r"><code># Code to be entered later  </code></pre>
+</div>
+</div>
+<div id="section-11" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Patients died during follow-up: 194 <br> Patients censored: 135</span></p>
+</details>
+<hr />
+<div id="examine-the-survival-function-using-kaplan-meier-survival-curve-of-the-entire-study-population.-using-the-plot-to-visually-estimate-what-is-the-median-overall-survival-time" class="section level4">
+<h4>2. Examine the survival function using Kaplan-Meier survival curve of the entire study population. Using the plot to visually estimate, what is the median overall survival time?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Median survival time: Between 12 and 12.5 years <br> (time corresponding to a survival function estimate of 0.5)</span></p>
+<p><span style="color:blue">Tracing a line from the survival function = 0.5 (Y axis), and the time corresponding to it on the X axis.</span></p>
+</details>
+<hr />
+</div>
+<div id="using-the-output-what-is-the-median-survival-time" class="section level4">
+<h4>3. Using the output, what is the median survival time?</h4>
+<details>
+<summary>
+<em>Show answer</em>
+</summary>
+<p>
+<p><span style="color:blue">Median survival time is 12.08 years</span></p>
+<p><span style="color:blue">The log-log transformation is the default method in SAS for calculating CIs for survival analysis. The confidence limits are calculated by adding and subtracting 1.96 x SE to the log(-log) transformation of the survivor function, or log(-logS(t)) and then reversing the transformation to get back to the original scale. <strong>This method is preferred because it ensures that the confidence limits will not be greater than 1 or less than 0.</strong></span></p>
+</details>
+<hr />
+</div>
+<div id="what-is-the-probability-of-surviving-beyond-5-years-from-the-time-of-hiv-diagnosis" class="section level4">
+<h4>4. What is the probability of surviving beyond 5 years from the time of HIV diagnosis?</h4>
+</div>
 </div>
 
 

@@ -50,6 +50,4 @@ navbar:
       href: http://github.com/jpb2210/
 output:
   html_document:
-    #toc: true
-    #toc_float: true
     theme: sandstone

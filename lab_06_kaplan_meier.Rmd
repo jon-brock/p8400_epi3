@@ -1,3 +1,314 @@
+---
+title: "Lab 6: Kaplan Meier Survival Analysis"
+output: html_document
+---  
+
+### Lab Learning Objectives  
+- To estimate survival function and median survival time 
+- Plot *Kaplan-Meier* survival curve using SAS 
+- Statistically compare survival curves  
+
 ***  
-### Kaplan Meier Survival Analysis  
+
+### Dataset  
+- `hivhepc.sas7bdat` - <span style="color:purple">This dataset will also be used for Lab 7</span> 
+- Cohort study on human immunodeficiency virus (HIV) infection 
+- Includes medical, behavioral, and epidemiologic information from HIV positive individuals 
+- *Research question*: Whether having a diagnosis of hepatitis C is associated with a shorter median survival time?  
+
 ***  
+
+### Data dictionary of the HIVHepC dataset  
+
+Variable | Description | Range |  
+--- | --- | --- |  
+patient | Identifier for the Amsterdam Cohort Studies participant | Random number |  
+MSM | Men who have sex with men | 0 = No <br> 1 = Yes |  
+IVDrugUse  | History of drug use | 0 = No <br> 1 = Yes |  
+ART_init | Has ART been initiated? | 0 = No <br> 1 = Yes |  
+HepC | Is the patient HepC positive? | 0 = No <br> 1 = Yes |  
+cohort_date | Date of enrollment into cohort anonymous <br> (changed to 1st day of month) - HIV diagnosis | dd-mm-yyyy |  
+death | Has the subject died? | 0 = No <br> 1 = Yes |  
+last_alive_date | Date last alive anonymous <br> (changed to 1st day of month) | dd-mm-yyyy |  
+death_date | Date of death anonymous <br> (changed to 1st day of month) | dd-mm-yyyy |  
+age | Age of patient at the last clinical visit | 99 (years) |  
+HIV_diag_1996 | Was HIV diagnosed before 1996? | 0 = No <br> 1 = Yes |  
+
+***  
+
+##### Copy the `HIVHepC.sas7bdat` from Courseworks to your flash drives or desktop.  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+In the `libname` statement, the `...` denote the path to your folder with HIVHepC data.  
+
+```{}
+libname Epi3 '...’;
+data hivhepc;
+set Epi3.hivhepc;
+run;
+```
+
+## R  
+
+First, we will need to load all necessary packages for our data analysis.  
+```{r load packages, message = FALSE}
+library(tidyverse) # For data cleaning and tidying  
+library(haven) # For importing SAS dataset(s)  
+library(survival) # For our Kaplan Meier survival analysis
+library(survminer) # For K-M survival analysis plotting  
+```
+
+Next, we will import the `hivhepc` dataset and 'tidy' the variable names.  
+```{r import dataset}
+hivhepc <- read_sas('./datasets/hivhepc.sas7bdat') %>% 
+    janitor::clean_names()
+```
+
+We can see from our `Global Environment` that the import was successful.  
+
+# {-}
+
+***  
+
+#### 1. How many observations are in the data?  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc contents data = hivhepc; run;
+```
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">TEXT HERE</span>  
+
+</details>  
+
+## R  
+
+```{r, results = FALSE}
+# Number of observations (or rows) 
+nrow(hivhepc)
+
+# Number of variables (or columns) 
+ncol(hivhepc)
+```
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">There are `r nrow(hivhepc)` observations and `r ncol(hivhepc)` variables.</span>  
+
+</details>  
+
+# {-}  
+
+***  
+
+#### 2. How many MSM and how many intravenous drug users? How many have both risk factors? How many have neither?  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+# Code to be entered later  
+```
+
+## R  
+
+```{r sample frequencies}
+msm_count <- hivhepc %>% janitor::tabyl(msm)
+ivdruguser_count <- hivhepc %>% janitor::tabyl(ivdruguse)
+msm_and_ivdu_count <- hivhepc %>% janitor::tabyl(msm, ivdruguse)
+```
+
+# {-}  
+
+***  
+
+#### 3. How many of the participants have had a diagnosis of Hepatitis C?  
+
+***  
+
+#### 4. In a cohort study, what are the four events that would determine when an individual stops contributing person-time?  
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">– Person dies  
+– Person develops the disease of interest  
+– Person is lost to follow-up  
+– Study period ends</span>  
+
+</details>  
+
+***  
+
+#### 5. Is this is a closed or open cohort? How would we examine the data to determine this?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">– Check to see if the follow up time is the same for all subjects that did not die  
+– The enrollment date (cohort_date) and the last follow-up date (last_alive_date) would be same  
+– If it were a closed cohort, there would be no losses to follow up</span>  
+
+<span style="color:blue">Note that it is possible to have some variability in enrollment date (because it’s not always possible to enroll large cohorts in a single day!) but in general, closed cohorts have a single enrollment event/period, and the same length of follow-up for all those that do not have the event of interest.</span>  
+
+</details>  
+
+***
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+/*Question 5*/
+proc freq data = hivhepc;
+table cohort_date*last_alive_date / list;
+where death = 0;
+run;
+```
+
+You can see from a sample of the `PROC FREQ` output that `cohort_date` varies for participants. In addition, the `last_alive_date` is different for all participants. In a closed cohort we would expect that all participants would have the same cohort start date and the same last_alive_date (for participants who did not die).  
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}
+
+***  
+
+#### 6. The amount of time each member of the cohort is followed is not provided for you. Using the variables provided how would you calculate it?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">- Among people who died, subtract enrollment date (cohort_date) from date of death  
+- Among people who did not die, subtract enrollment date from last date alive</span>  
+
+<span style="color:blue">Note: To be able to subtract dates to get the days of follow- up, the dates must be in the same format, e.g. MMDDYYYY, MMYYYY, etc.</span>  
+
+</details>  
+
+# {.tabset .tabset-fade}  
+
+## SAS  
+
+Calculate person year using SAS  
+
+```{}
+data hivhepc2;
+set hivhepc;
+
+if death = 1 then days = death_date - cohort_date;
+else if death = 0 then days = last_alive_date - cohort_date;
+pyears = days/365.25; *gives time-to-event in years;
+
+run; 
+```
+
+<span style="color:blue">We convert to years for best interpretability, but other units could be used.</span>  
+
+Check your work:  
+
+```{}
+proc freq data = hivhepc2;
+table death_date*cohort_date*pyears / list missing nocum nofreq nopercent;
+run;
+
+proc freq data = hivhepc2;
+table last_alive_date*cohort_date*pyears / list missing nocum nofreq nopercent;
+run;
+
+proc freq data = hivhepc2;
+table pyears;
+run;
+```
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}  
+
+***  
+
+### Part II  
+
+***  
+
+#### 1. How many people had died at the end of follow-up? How many people were censored (did not have the event of interest)?  
+# {.tabset .tabset-fade}  
+
+## SAS  
+```{}
+proc lifetest 
+    data = hivhepc2
+    method = km
+    plots = (s)
+    graphics; 
+    time pyears*death(0);
+run;
+```
+
+<span style="color:blue">`pyears` is the time variable <br> `death` is the event (`Death = 1`) <br> `(0)` is the censored value (`Death = 0`)</span> 
+
+## R  
+```{r}
+# Code to be entered later  
+```
+
+# {-}  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Patients died during follow-up: 194 <br> Patients censored: 135</span>  
+
+</details>  
+
+***  
+
+#### 2. Examine the survival function using Kaplan-Meier survival curve of the entire study population. Using the plot to visually estimate, what is the median overall survival time?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Median survival time: Between 12 and 12.5 years <br> (time corresponding to a survival function estimate of 0.5)</span>  
+
+<span style="color:blue">Tracing a line from the survival function = 0.5 (Y axis), and the time corresponding to it on the X axis.</span>
+
+</details>  
+
+***  
+
+#### 3. Using the output, what is the median survival time?  
+
+<details>
+<summary>*Show answer*</summary> 
+<p>
+
+<span style="color:blue">Median survival time is 12.08 years</span>  
+
+<span style="color:blue">The log-log transformation is the default method in SAS for calculating CIs for survival analysis. The confidence limits are calculated by adding and subtracting 1.96 x SE to the log(-log) transformation of the survivor function, or log(-logS(t)) and then reversing the transformation to get back to the original scale. **This method is preferred because it ensures that the confidence limits will not be greater than 1 or less than 0.**</span>  
+
+</details>  
+
+***  
+
+#### 4. What is the probability of surviving beyond 5 years from the time of HIV diagnosis?  
+
