@@ -1,8 +1,9 @@
+---
+title: "P8400 - Principles of Epidemiology III"
+output: html_document
+---  
+
 ***  
-
-# Welcome to P8400 - Principles of Epidemiology III
-
-*** 
 
 As part of my Master of Public Health (MPH) in Epidemiology program with the Mailman School of Public Health at Columbia University we were required to take a series of core epidemiology courses. In the Fall of 2019 I, and all other Epi students, took P8400 - Principles of Epidemiology III. The course was structured around a ~two hour lecture followed by a ~one hour lab. These labs are the basis for this project.
 

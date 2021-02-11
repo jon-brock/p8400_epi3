@@ -85,13 +85,13 @@ proc contents data = hivhepc; run;
 <summary>*Show answer*</summary> 
 <p>
 
-<span style="color:blue">TEXT HERE</span>  
+<span style="color:blue">There are 329 observations and 11 variables.</span>  
 
 </details>  
 
 ## R  
 
-```{r, results = FALSE}
+```{r}
 # Number of observations (or rows) 
 nrow(hivhepc)
 
@@ -117,22 +117,50 @@ ncol(hivhepc)
 
 ## SAS  
 ```{}
-# Code to be entered later  
+proc freq data= hivhepc;
+table MSM IVdruguse MSM*IVDrugUse HepC / list; 
+run;
 ```
 
 ## R  
+We will need to generate our frequency tables first. We can do this using the `tabyl()` function as part of the `janitor` package.  
 
 ```{r sample frequencies}
-msm_count <- hivhepc %>% janitor::tabyl(msm)
-ivdruguser_count <- hivhepc %>% janitor::tabyl(ivdruguse)
-msm_and_ivdu_count <- hivhepc %>% janitor::tabyl(msm, ivdruguse)
+# One-way frequency tables -> tibbles
+msm_count <- hivhepc %>% janitor::tabyl(msm) %>% as_tibble()
+ivdruguser_count <- hivhepc %>% janitor::tabyl(ivdruguse) %>% as_tibble()
+
+# Two-way frequency table (using `xtabs`)
+msm_and_ivdu_count <- xtabs(~ msm + ivdruguse, data = hivhepc)
 ```
+
+Now, we can print our generated frequency tables.  
+
+```{r print sample frequencies}
+# Print frequency tables 
+msm_count
+ivdruguser_count
+msm_and_ivdu_count
+```
+
+Recall from the data dictionary that `msm = 1` indicates that the participant *has sex with men*, and that `ivdruguse = 1` indicates that the participant has a *history of iv drug use*. Knowing this, we can see from our tables that:  
+
+- there are `r msm_count %>% filter(msm == 1) %>% pull(n)` MSM  
+- there are `r ivdruguser_count %>% filter(ivdruguse == 1) %>% pull(n)` participants with a history of IV drug use 
+- there are `r msm_and_ivdu_count[[2,2]]` participants that are both MSM and participants with a history of IV drug use 
+- there are `r msm_and_ivdu_count[[1,2]]` participants that have neither risk factor  
 
 # {-}  
 
 ***  
 
 #### 3. How many of the participants have had a diagnosis of Hepatitis C?  
+
+The table below indicates how many and what percentage of our sample have had a diagnosis of Hepatitis C.  
+
+```{r}
+hivhepc %>% janitor::tabyl(hepc) %>% filter(hepc == 1)
+```
 
 ***  
 
