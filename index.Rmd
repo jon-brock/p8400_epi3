@@ -1,14 +1,62 @@
 ---
-title: "P8400 - Principles of Epidemiology III"
-output: html_document
+title: "P8400 - Principles of Epidemiology III - Fall 2021"
+output: 
+    html_document:
+        toc: true
+        toc_float: true
 ---  
 
 ***  
 
-As part of my Master of Public Health (MPH) in Epidemiology program with the Mailman School of Public Health at Columbia University we were required to take a series of core epidemiology courses. In the Fall of 2019 I, and all other Epi students, took P8400 - Principles of Epidemiology III. The course was structured around a ~two hour lecture followed by a ~one hour lab. These labs are the basis for this project.
-
-Most, if not all, schools of public health continue to teach using the industry-standard SAS. Unfortunately, this can be very limiting to those who might seek positions in organizations that are attempting to steer away from their dependence on SAS, or do not use it at all. As such, with this project I intend to go through my lab work again, though using only R.  
-
-**Note**: None of the exercises discussed herein belong to me. I only have access to these materials because I was a matriculated student from September 2018 through May 2020. As such, this repository is not public and only available to those for whom I showed.  
+![](banner.png)
 
 ***  
+
+### Course Description  
+
+This is the third epidemiology course in the sequence of methods courses. The course focuses on integrating study design methods with advanced statistical analyses. Lectures cover theoretical concepts, including confounding, interaction, and pseudo risks and rates, and several analytical methods including linear, logistic, Cox Proportional Hazards, and Poisson regression methods. The course will also touch briefly on other generalized linear models (e.g. relative risk regression) and methods for handling
+correlated data (GEE, multi-level modeling). Computer laboratories make use of multiple datasets to provide students with an opportunity to implement the analytical methods covered in lecture. Multivariable methods to test for confounding, interaction, and mediation are taught both in lecture and laboratories. The goal of this course is to provide both theoretical and practical experience in analyzing and interpreting epidemiological data.  
+
+***  
+
+### Course Learning Objectives  
+
+Students who successfully complete this course will be able to:  
+1. Compare and differentiate the strengths and limitations of the different study designs in epidemiology  
+2. Examine and quantify the role of information bias, selection bias, and confounding in the estimation of measures of association  
+3. Evaluate and quantify the role of interaction on both an additive and multiplicative scale and the implications of scale on estimation  
+4. Apply multivariable regression methods commonly used in epidemiology and understand the assumptions of these regression methods compared to categorical methods  
+5. Assess confounding, interaction and mediation using multivariable models  
+
+***  
+
+### Course Prerequisites  
+
+* [P8438] Design and Conduct of Observational Epidemiological Studies  
+* [P8120] Analysis of Categorical Data  
+* [P8483] Applications of Epidemiologic Research Methods  
+
+***  
+
+### Class Sessions  
+
+Tuesdays: 1:00 p.m. to 3:50 p.m. in the Hammer Health Sciences Center (HSC)  
+
+* Lecture 1:00 p.m. to 2:50 p.m. (Room 301)  
+* Lab 3:00 p.m. to 3:50 p.m.  
+    + Lab Section 001: HSC LL106  
+    + Lab Section 002: HSC LL107  
+    + Lab Section 003: HSC LL108A/B  
+    + Lab Section 004: HSC LL109A/B  
+    + Lab Section 005: HSC LL110  
+
+***  
+
+### Instructor  
+
+Jeanine Genkinger, PhD  
+Phone: 212-342-0410  
+Email: jg3081@cumc.columbia.edu  
+Office: 722 West 168th St, 7th Floor, Rm 712  
+Office Hour: By Appointment  
+

@@ -11,15 +11,27 @@
 
 
 
-<title>P8400 - Principles of Epidemiology III</title>
+<title>P8400 - Principles of Epidemiology III - Fall 2021</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -34,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -51,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -87,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -107,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -168,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -180,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -191,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -206,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -259,6 +221,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -266,6 +291,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -373,23 +408,78 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
-<h1 class="title toc-ignore">P8400 - Principles of Epidemiology III</h1>
+<h1 class="title toc-ignore">P8400 - Principles of Epidemiology III - Fall 2021</h1>
 
 </div>
 
 
 <hr />
-<p>As part of my Master of Public Health (MPH) in Epidemiology program with the Mailman School of Public Health at Columbia University we were required to take a series of core epidemiology courses. In the Fall of 2019 I, and all other Epi students, took P8400 - Principles of Epidemiology III. The course was structured around a ~two hour lecture followed by a ~one hour lab. These labs are the basis for this project.</p>
-<p>Most, if not all, schools of public health continue to teach using the industry-standard SAS. Unfortunately, this can be very limiting to those who might seek positions in organizations that are attempting to steer away from their dependence on SAS, or do not use it at all. As such, with this project I intend to go through my lab work again, though using only R.</p>
-<p><strong>Note</strong>: None of the exercises discussed herein belong to me. I only have access to these materials because I was a matriculated student from September 2018 through May 2020. As such, this repository is not public and only available to those for whom I showed.</p>
+<p><img src="banner.png" /></p>
 <hr />
+<div id="course-description" class="section level3">
+<h3>Course Description</h3>
+<p>This is the third epidemiology course in the sequence of methods courses. The course focuses on integrating study design methods with advanced statistical analyses. Lectures cover theoretical concepts, including confounding, interaction, and pseudo risks and rates, and several analytical methods including linear, logistic, Cox Proportional Hazards, and Poisson regression methods. The course will also touch briefly on other generalized linear models (e.g. relative risk regression) and methods for handling correlated data (GEE, multi-level modeling). Computer laboratories make use of multiple datasets to provide students with an opportunity to implement the analytical methods covered in lecture. Multivariable methods to test for confounding, interaction, and mediation are taught both in lecture and laboratories. The goal of this course is to provide both theoretical and practical experience in analyzing and interpreting epidemiological data.</p>
+<hr />
+</div>
+<div id="course-learning-objectives" class="section level3">
+<h3>Course Learning Objectives</h3>
+<p>Students who successfully complete this course will be able to:<br />
+1. Compare and differentiate the strengths and limitations of the different study designs in epidemiology<br />
+2. Examine and quantify the role of information bias, selection bias, and confounding in the estimation of measures of association<br />
+3. Evaluate and quantify the role of interaction on both an additive and multiplicative scale and the implications of scale on estimation<br />
+4. Apply multivariable regression methods commonly used in epidemiology and understand the assumptions of these regression methods compared to categorical methods<br />
+5. Assess confounding, interaction and mediation using multivariable models</p>
+<hr />
+</div>
+<div id="course-prerequisites" class="section level3">
+<h3>Course Prerequisites</h3>
+<ul>
+<li>[P8438] Design and Conduct of Observational Epidemiological Studies<br />
+</li>
+<li>[P8120] Analysis of Categorical Data<br />
+</li>
+<li>[P8483] Applications of Epidemiologic Research Methods</li>
+</ul>
+<hr />
+</div>
+<div id="class-sessions" class="section level3">
+<h3>Class Sessions</h3>
+<p>Tuesdays: 1:00 p.m. to 3:50 p.m. in the Hammer Health Sciences Center (HSC)</p>
+<ul>
+<li>Lecture 1:00 p.m. to 2:50 p.m. (Room 301)<br />
+</li>
+<li>Lab 3:00 p.m. to 3:50 p.m.
+<ul>
+<li>Lab Section 001: HSC LL106<br />
+</li>
+<li>Lab Section 002: HSC LL107<br />
+</li>
+<li>Lab Section 003: HSC LL108A/B<br />
+</li>
+<li>Lab Section 004: HSC LL109A/B<br />
+</li>
+<li>Lab Section 005: HSC LL110</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="instructor" class="section level3">
+<h3>Instructor</h3>
+<p>Jeanine Genkinger, PhD<br />
+Phone: 212-342-0410<br />
+Email: <a href="mailto:jg3081@cumc.columbia.edu" class="email">jg3081@cumc.columbia.edu</a><br />
+Office: 722 West 168th St, 7th Floor, Rm 712<br />
+Office Hour: By Appointment</p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -415,13 +505,39 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
