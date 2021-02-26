@@ -45,9 +45,9 @@ navbar:
       href: datasets/montana.txt
   - text: Supplemental Readings  
     href: readings.html
+  - text: Homework Assignments
+    href: homework.html
   right:
-    - text: "LinkedIn"
-      href: https://www.linkedin.com/in/jon-brock/
     - text: "Email"
       href: mailto:<j.brock@columbia.edu>
     - text: "GitHub"

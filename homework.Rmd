@@ -1,0 +1,15 @@
+---
+title: "Homework Assignments"
+output: html_document
+---  
+
+***  
+
+|               | Available  | Due               | Assignment                                                | Answer Key                                          |
+|:------------- |:---------- |:----------------- | :--------------------------------------------------------:| :------------------------------------------------:|
+| Homework 1    | September 10, 4:00 p.m.    | September 17, 1:00 p.m. | [Download](homework-files/homework_01.docx) | [Download]()|
+| Homework 2    | September 17, 4:00 p.m.    | September 24, 1:00 p.m.   | [Download](homework-files/homework_02.docx) | [Download]()|
+| Homework 3    | September 24, 4:00 p.m.     | October 1, 1:00 p.m.  | [Download](homework-files/homework_03.docx) | [Download]()|
+| Homework 4    | October 1, 4:00 p.m.      | October 8, 1:00 p.m.   | [Download](homework-files/homework_04.docx) | [Download]()|
+| Homework 5    | October 29, 4:00 p.m.     | November 12, 1:00 p.m.  | [Download](homework-files/homework_05.docx) | [Download]()|
+| Homework 6    | November 19, 4:00 p.m.         | November 26, 1:00 p.m.  | [Download](homework-files/homework_06.docx) | [Download]()|
