@@ -44,7 +44,7 @@ of epidemiologic data
 
 #### Reading  
 
-* Rothman KJ. J Gen Intern Med 2014;29(7):1060-1064.  
+* [Rothman KJ. J Gen Intern Med 2014;29(7):1060-1064.](documents/rothman.pdf)  
 
 ***  
 
@@ -66,7 +66,7 @@ measures of association
 
 #### Reading  
 
-* Nichol et al. NEJM 2007;357:1373-1381.  
+* [Nichol et al. NEJM 2007;357:1373-1381.](documents/nichol.pdf)  
 
 ***  
 
@@ -86,7 +86,7 @@ measures of association
 
 #### Reading  
 
-* Flink et al. PLoS ONE. 2013;8(8):e70070  
+* [Flink et al. PLoS ONE. 2013;8(8):e70070](documents/flink.pdf)  
 
 <span style="color: red;">**Homework 1 is Due**</span>  
 
@@ -101,8 +101,7 @@ measures of association
 * Summarize the design elements of a case-control study  
 * Describe the measure of association used for a case-control study  
 * Discuss the fundamental concepts underlying the logistic regression model and when it is useful for the analysis of epidemiologic data  
-* Demonstrate approaches for deciding which covariates to include in a multivariable
-model  
+* Demonstrate approaches for deciding which covariates to include in a multivariable model  
 
 #### Lab 4    
 
@@ -110,7 +109,7 @@ model
 
 #### Reading  
 
-* Hogervorst et al. JNCI 2009;101:651-662  
+* [Hogervorst et al. JNCI 2009;101:651-662](documents/hogervorst.pdf)  
 
 <span style="color: red;">**Homework 2 is Due**</span>  
 
@@ -133,7 +132,7 @@ model
 
 #### Reading  
 
-* Merritt et al. British Journal of Cancer 2014; 110: 1392–1401  
+* [Merritt et al. British Journal of Cancer 2014; 110: 1392–1401](documents/merritt.pdf)  
 
 <span style="color: red;">**Homework 3 is Due**</span>  
 
@@ -179,8 +178,8 @@ In-class midterm exam - 1:00 p.m. to 3:50 p.m.
 
 #### Reading  
 
-* Bresalier et al. NEJM 2005;352(11):1092-1102  
-* Keyes et al. IJE 2012;41:495–503  
+* [Bresalier et al. NEJM 2005;352(11):1092-1102](documents/bresalier.pdf)  
+* [Keyes et al. IJE 2012;41:495–503](documents/keyes.pdf)  
 
 ***  
 
@@ -205,8 +204,8 @@ In-class midterm exam - 1:00 p.m. to 3:50 p.m.
 
 #### Reading  
 
-* Tobias et al. NEJM 2014;370:233-44  
-* Powell et al. 2012. (time varying covariates article)  
+* [Tobias et al. NEJM 2014;370:233-44](documents/tobias.pdf)  
+* [Powell et al. 2012. (time varying covariates article)](documents/powell.pdf)  
 
 ***  
 
@@ -236,8 +235,8 @@ In-class midterm exam - 1:00 p.m. to 3:50 p.m.
 
 #### Reading  
 
-* Ludvigsson et al. JAMA Psychiatry. 2013;70(11):1224-1230  
-* Shen et al. PLoS ONE 2012; 7(9):e44308  
+* [Ludvigsson et al. JAMA Psychiatry. 2013;70(11):1224-1230](documents/ludvigsson.pdf)  
+* [Shen et al. PLoS ONE 2012; 7(9):e44308](documents/shen.pdf)  
 
 <span style="color: red;">**Homework 5 is Due**</span>  
 
@@ -262,8 +261,8 @@ In-class midterm exam - 1:00 p.m. to 3:50 p.m.
 
 #### Reading  
 
-* Perkins et al. Cancer 2014;120:2514-21  
-* Fang et al. NEJM 2012;366:1310-8.  
+* [Perkins et al. Cancer 2014;120:2514-21](documents/perkins.pdf)  
+* [Fang et al. NEJM 2012;366:1310-8.](documents/fang.pdf)  
 
 <span style="color: red;">**Take-home quiz to be taken on Canvas by Tuesday, November 19th at 1:00 p.m.**</span>  
 
@@ -285,9 +284,9 @@ In-class midterm exam - 1:00 p.m. to 3:50 p.m.
 
 #### Reading  
 
-* Auvinen, Anssi, et al. Epidemiology 13.3 (2002): 356-359.  
-* Hepworth, Sarah J., et al. BMJ 332.7546 (2006): 883-887.  
-* Lönn, Stefan, et al. Epidemiology 15.6 (2004): 653-659.  
+* [Auvinen, Anssi, et al. Epidemiology 13.3 (2002): 356-359.](documents/auvinen.pdf)  
+* [Hepworth, Sarah J., et al. BMJ 332.7546 (2006): 883-887.](documents/hepworth.pdf)  
+* [Lönn, Stefan, et al. Epidemiology 15.6 (2004): 653-659.](documents/lonn.pdf)  
 
 <span style="color: red;">**Homework 6 due**</span>  
 
