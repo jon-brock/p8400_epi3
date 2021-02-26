@@ -240,14 +240,12 @@ Students are required to adhere to the [Mailman School Honor Code](https://www.m
 * Homework assignments:  
 
     + You may discuss concepts and work through homework problems with classmates; however, the work you submit must be your own (e.g., in your own words, performing your own calculations, providing your own code and results).  
-
-    + It is in violation of the honor code to use answer keys from previous semesters to complete course assignments. Sharing of answer keys either directly or via internet upload is strictly prohibited in this class.  
     
+    + It is in violation of the honor code to use answer keys from previous semesters to complete course assignments. Sharing of answer keys either directly or via internet upload is strictly prohibited in this class.  
+
 * Take-home quizzes:  
 
-    + Quizzes are open book/open notes, but must be completed independently. You **cannot**
-discuss the quiz or work with classmates to complete the quiz. You may only discuss the
-content of the quiz with classmates after the quiz due date (i.e., after all students have completed the quiz).  
+    + Quizzes are open book/open notes, but must be completed independently. You **cannot** discuss the quiz or work with classmates to complete the quiz. You may only discuss the content of the quiz with classmates after the quiz due date (i.e., after all students have completed the quiz).  
 
 * Final exam:  
 
@@ -256,13 +254,24 @@ exam questions with classmates – **you must complete the final exam alone**. I
 
 Anyone found to be in violation of these course procedures will be [reported to OSA](https://www.mailman.columbia.edu/people/current-students/office-student-affairs).  
 
+***  
+
 #### Disability Access  
 
+In order to receive disability-related academic accommodations, students must first be registered with the Office of Disability Services (ODS). Students who have, or think they may have a disability are invited to contact ODS for a confidential discussion at 212.854.2388 (V) 212.854.2378 (TTY), or by [email](disability@columbia.edu).  
 
+If you have already registered with ODS, please make sure you inform [Sarah Tooley](st3146@cumc.columbia.edu), the School’s liaison to the Office of Disability Services, that you would like to receive accommodations for this class. Then, speak to your instructor to ensure that they have been notified of your recommended accommodations by Sarah Tooley.  
+
+***  
 
 #### Encouraging an Open and Inclusive Classroom Environment  
 
+The Department of Epidemiology is committed to creating an educational culture that encourages
+robust, open, and inclusive classroom environments. Key to achieving this goal is to ensure that all students are included in the conversation and feel comfortable expressing themselves. This commitment is part of our collective enactment of the elements of the Public Health Oath in which we agree to "respect the rights, values, beliefs, and cultures of those individuals and communities with whom [we] work."  
 
+An inclusive classroom environment is undermined by microaggressions. Microaggressions are
+commonplace verbal, behavioral, and environmental indignities, frequently unintentional, that
+communicate hostile, derogatory, or negative sentiments about individuals on the basis of status characteristics such as race, ethnicity, gender, sexual-orientation, religion, disability, etc. Those who commit a microaggression are usually unaware that they have demeaned another individual, but the consequences for those on the receiving end can be significant. Microaggressions harm individuals by making them feel invalidated, isolated, diminished, and marginalized. They harm the learning environment by making it less inclusive, open and productive.  
 
-
-
+Recognizing and addressing microaggressions can help mitigate these negative consequences and
+thereby maintain a robust classroom environment. We believe that responding to microaggressions in the classroom is a critical part of educational growth that leads to a better understanding of the sociocultural issues we seek to investigate as epidemiologists and public health professionals. If you have observed or been the target of a microaggression from a classmate, TA, or faculty member, you are encouraged to bring it to their attention when it happens. Faculty and TAs are willing and prepared to facilitate such engagement, even if they are responsible for the microaggression. If you are uncomfortable speaking up immediately, please contact the TA or instructor outside of class, or another faculty member with whom you feel comfortable, or with any member of the Department senior administration or leadership.  

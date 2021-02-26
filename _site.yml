@@ -3,9 +3,7 @@ output_dir: "."
 navbar:
   title: "Home"
   left:
-  - text: Syllabus
-    href: p8400_syllabus_epi3_fall_2019.pdf
-  - text: Schedule
+  - text: Course Schedule
     href: schedule.html
   - text: Lab Topics
     menu: 
