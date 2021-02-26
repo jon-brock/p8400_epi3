@@ -150,65 +150,111 @@ lecture recording issues.
 
 ### Assessment and Grading Policy  
 
+Student grades will be based on:  
 
-
-***  
-
-### Pre-Semester Assessment  
-
-
-
-***  
-
-### Homework  
-
-
+Course Item | Grade Weight  
+--- | :---:  
+Homeworks | 20%  
+Pre-semester assessment | 5%  
+Quizzes | 15%  
+Poll Everywhere participation | 5%  
+Midterm exam | 25%  
+Final exam | 30%  
 
 ***  
 
-### Quizzes  
+#### Pre-Semester Assessment  
 
+Before the start of the semester students must complete the online pre-semester assessment. It is administered through Canvas (Quizzes) and is due before **10:00 a.m.** on the first day of class. The first part of the assessment reviews epidemiologic concepts from pre-requisite Epi courses and the second part reviews concepts from SAS and Categorical Data Analysis. Review materials are posted on Canvas (Files).  
 
-
-***  
-
-### Midterm Exam  
-
-
+The goal of this assessment is to help the instructor and TAs tailor the course and laboratory sessions to students’ level of comfort with pre-requisite material. You will be given 1 hour to complete the assessment. The pre-semester assessment is completion based, but students must complete all of it to receive full credit. The assessment is **open book**; however, students must work **independently** to complete the assessment.
 
 ***  
 
-### Final Exam  
+#### Homework  
 
+* Homework is due **in class** at 1:00 p.m. on Tuesdays before lecture. Please write neatly or type your answers. No credit will be given for illegible answers.  
+* Late homework will **NOT** be accepted.  
+* The lowest homework grade will be dropped so that each homework counts 4% of the total
+homework grade.
+* All students must abide by the Mailman HONOR code. 
 
+***  
+
+#### Quizzes  
+
+Four quizzes (two announced, two unannounced) will be given throughout the semester in either
+lecture or laboratory sessions. Announced quizzes are take-home and their due dates are listed below in the course schedule. The lowest quiz grade will be dropped so that each quiz counts 5% of the total quiz grade.
+
+***  
+
+#### Midterm Exam  
+
+This exam will be given in-class on **October 15th**. It is a closed-book exam. If there is a valid reason for missing an exam, you must notify the instructor **two weeks prior** to the exam.
+
+***  
+
+#### Final Exam  
+
+The final exam consists of two parts, an **in-class exam on Tuesday, December 10th** (worth 10% of the final exam grade) and a take-home (open-book) portion due Thursday, December 12th (worth 20% of the final exam grade). The take-home portion of the final exam will be distributed via Canvas at the end of day on December 3rd and will be **due in person on Thursday, December 12th at 12:00 p.m.**. The take-home portion of the exam should be submitted in person and specific submission details will be provided closer to the exam due date. The exam will cover material presented over the entire semester, but it will focus primarily on post-midterm material. The take-home portion of the exam must be turned in on time. For every day late, there will be a 5% reduction in grade.
 
 ***  
 
 ### Final Grade Cutpoints  
 
-
+Percentage Range | Letter Grade  
+:---: | :---:  
+98.0 or above | A+  
+94.0 - 97.9 | A  
+90.0 - 93.9 | A-  
+88.0 - 89.9 | B+  
+84.0 - 87.9 | B  
+80.0 - 83.9 | B-  
+78.0 - 79.9 | C+  
+74.0 - 77.9 | C  
+70.0 - 73.9 | C-  
+Below 70.0 | F  
 
 ***  
 
 ### Re-Grading Policy  
 
-
+If students have questions about their grade on any assignment (homework, quiz, exam) they must bring it to Dr. Genkinger.  
 
 ***  
 
 ### Lecture Recordings  
 
-
+The class will be taped with the slides. However, this class is not designed as an online course. The taped classes will only be available on a case by case basis if you need to miss a class due to illness etc. or if you have a disability, or other need for audio reinforcement. Please contact [Richard Teran](rat2127@cumc.columbia.edu) to request regular access or to request access to the tape for a specific class.  
 
 ***  
 
 ### Mailman School Policies and Expectations  
 
-
+Students and faculty have a shared commitment to the School’s [mission, values and oath](https://www.mailman.columbia.edu/about/mission-history).  
 
 #### Academic Integrity  
 
+Students are required to adhere to the [Mailman School Honor Code](https://www.mailman.columbia.edu/people/current-students/community-standards)  
 
+* Homework assignments:  
+
+    + You may discuss concepts and work through homework problems with classmates; however, the work you submit must be your own (e.g., in your own words, performing your own calculations, providing your own code and results).  
+
+    + It is in violation of the honor code to use answer keys from previous semesters to complete course assignments. Sharing of answer keys either directly or via internet upload is strictly prohibited in this class.  
+    
+* Take-home quizzes:  
+
+    + Quizzes are open book/open notes, but must be completed independently. You **cannot**
+discuss the quiz or work with classmates to complete the quiz. You may only discuss the
+content of the quiz with classmates after the quiz due date (i.e., after all students have completed the quiz).  
+
+* Final exam:  
+
+    + Unlike homework, for the final exam you **may not** discuss concepts or work through
+exam questions with classmates – **you must complete the final exam alone**. If you have any clarification questions after release of the final exam you may direct them to your TA and the professor.  
+
+Anyone found to be in violation of these course procedures will be [reported to OSA](https://www.mailman.columbia.edu/people/current-students/office-student-affairs).  
 
 #### Disability Access  
 
