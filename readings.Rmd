@@ -2,3 +2,24 @@
 title: "Supplemental Reading Materials"
 output: html_document
 ---  
+
+***  
+
+Lecture | Textbook | Recommended Readings  
+--- | :---: | :---:  
+Lecture 1: Casual Inference, Measures of Effect and Association, Multivariable Model | Rothman (Modern Epi) | Ch. 2 (p. 5-13) <br> Ch. 3 (p. 32-48) <br> Ch. 4 (p. 51-61)  
+Lecture 2: Precision and Bias | Rothman (Modern Epi) | Ch. 9 <br> Ch. 10 (p. 148-151, 156-158)  
+Lecture 3: Interaction | Rothman (Modern Epi) <br> <br> Article (interaction fallacy) <br> Article (interaction tutorial) | Ch. 5 <br> <br> Morabia. 1997. J Clin Epidemiol <br> VanderWheele and Knol. 2014 <br> Epidemiol Methods  
+Lecture 4: Case-Control Analysis I | Rothman (Modern Epi) <br> <br> <br> <br> H & L (Logistic) <br> <br> <br> Article (Table 2 Fallacy) <br> Article (confounder control) | Ch. 8 <br> Ch. 14 (p. 238-253) <br> Ch. 15 (p. 274-276) <br> <br> Ch. 1 <br> Ch. 2 <br> <br> Westreich and Greenland. 2013. AJE <br> McNamee. 2005. Occup Environ Med  
+Lecture 5: Case-Control Analysis II | Rothman (Modern Epi) <br> <br> <br> H & L (Logistic) <br> <br> <br> <br> <br> Article (model assumptions) | Ch. 17 (p. 303-305, 321-323) <br> Ch. 20 (p. 394-395, 413-415) <br> <br> Ch. 3 <br> Ch. 8.1 <br> Ch. 8.2 <br> Ch. 10.8 <br> <br> Barker & Shaw. 2015. AJCN  
+Lecture 6: Cohort/Follow-up, Analysis I & Age, Period, Cohort Effects | Rothman (Modern Epi) <br> <br> <br> <br> H & L (Survival) <br> <br> <br> Szklo & Nieto (A, P, C effects) | Ch. 14 (p. 253-257) <br> Ch. 15 (p. 273-274) <br> Ch. 20 (p. 393-394) <br> <br> Ch. 1 <br> Ch. 2 <br> <br> Ch. 1 (p. 1-14); pdf provided  
+Lecture 7: Cohort/Follow-up Analysis II | H & L (Survival) | Ch. 3  
+Lecture 8: Lecture 8: Matching and correlated data | Rothman (Modern Epi) <br> <br> <br> <br> Vittinghoff (GEE) <br> <br> Website (GEE/repeated measures) | Ch. 11 (p. 171-182) <br> Ch. 16 (p. 283-288) <br> Ch. 21 (p. 434-435) <br> <br> Ch. 7.4-7.6, 7.11; pdf provided <br> <br> [Click Here]()  
+Lecture 9: Poisson and Relative Risk | Rothman (Modern Epi) <br> <br> Vittinghoff (relative risk reg.) <br> Vittinghoff (GLMs/Poisson) <br> <br> Website (MLMs) <br> Website (relative risk regression) <br> <br> Article (relative risk regression) <br> Article (Poisson) | Ch. 14 (p. 240-245) <br> <br> Ch. 5.5.3; pdf provided <br> Ch. 8; pdf provided <br> <br> [Click Here]() <br> [Click Here]() <br> <br> Zou et al. 2004. AJE <br> Simard et al. 2010. Arch Int Med  
+
+***  
+
+*H&L(Logistic): Hosmer & Lemeshow “Applied Logistic Regression”*  
+*H&L(Survival): Hosmer & Lemeshow “Applied Survival Analysis”*  
+*Vittinghoff: Regression methods in biostatistics: linear, logistic, survival, and repeated measures models.*  
+*Available through the health sciences library [online](https://clio.columbia.edu/catalog?q=vittinghoff&search_field=all_fields&commit=Search).*
