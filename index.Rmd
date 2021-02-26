@@ -22,6 +22,7 @@ correlated data (GEE, multi-level modeling). Computer laboratories make use of m
 ### Course Learning Objectives  
 
 Students who successfully complete this course will be able to:  
+
 1. Compare and differentiate the strengths and limitations of the different study designs in epidemiology  
 2. Examine and quantify the role of information bias, selection bias, and confounding in the estimation of measures of association  
 3. Evaluate and quantify the role of interaction on both an additive and multiplicative scale and the implications of scale on estimation  
