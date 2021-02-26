@@ -65,7 +65,7 @@ Office Hour: By Appointment
 ### Teaching Assistants  
 
 Teaching Assistant | Email | Office Hour Time | Office Hour Location  
---- | :---: | :---: | :---:  
+:---: | :---: | :---: | :---:  
 Adiba Ashrafi | ai2337@cumc.columbia.edu | TBD | TBD  
 Precious Esie | pie2104@cumc.columbia.edu | Tuesdays <br> 11:00 a.m. to 12:00 p.m. | ARB 15th floor conference room (1514)  
 Diana Garofolo | dcg2132@cumc.columbia.edu | Mondays <br> 12:00 p.m. to 1:00 p.m. | ARB 7th floor conference room (739A)  
@@ -246,7 +246,7 @@ Students are required to adhere to the [Mailman School Honor Code](https://www.m
 * Take-home quizzes:  
 
     + Quizzes are open book/open notes, but must be completed independently. You **cannot** discuss the quiz or work with classmates to complete the quiz. You may only discuss the content of the quiz with classmates after the quiz due date (i.e., after all students have completed the quiz).  
-
+    
 * Final exam:  
 
     + Unlike homework, for the final exam you **may not** discuss concepts or work through

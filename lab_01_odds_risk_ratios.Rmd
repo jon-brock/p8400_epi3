@@ -4,11 +4,11 @@ output: html_document
 ---  
 
 ### Lab Learning Objectives  
-- ~~To become reacquainted with SAS~~
-- To review the odds ratio (OR) and risk ratio (RR)
-- To learn how sample size affects precision
-- To visually assess the relationship between measures
-- To learn how prevalence of disease among the unexposed influences that relationship
+- To become reacquainted with SAS  
+- To review the odds ratio (OR) and risk ratio (RR)  
+- To learn how sample size affects precision  
+- To visually assess the relationship between measures  
+- To learn how prevalence of disease among the unexposed influences that relationship  
 
 *** 
 

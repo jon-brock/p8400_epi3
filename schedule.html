@@ -11,15 +11,27 @@
 
 
 
-<title>Fall 2019 Schedule</title>
+<title>Fall 2021 Course Schedule</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -34,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -51,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -87,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -107,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -168,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -180,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -191,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -206,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -259,6 +221,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -266,6 +291,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -283,10 +318,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="p8400_syllabus_epi3_fall_2019.pdf">Syllabus</a>
-</li>
-<li>
-  <a href="schedule.html">Schedule</a>
+  <a href="schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -373,19 +405,384 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
-<h1 class="title toc-ignore">Fall 2019 Schedule</h1>
+<h1 class="title toc-ignore">Fall 2021 Course Schedule</h1>
 
 </div>
 
 
 <hr />
+<div id="pre-course-assessment" class="section level3">
+<h3>00. Pre-Course Assessment</h3>
+<p><span style="color: red;"><strong>To be completed before class on Tuesday, September 3, 2021</strong></span></p>
+<p>Online Assessment (Epi concept and SAS review - Available through Canvas)</p>
+<div id="learning-objectives" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>The first part will contain questions testing basic epidemiology concepts<br />
+</li>
+<li>The second part will contain questions testing basic SAS familiarity<br />
+</li>
+<li>Goal: to help instructors and TAs tailor the course and laboratory sessions to students’ level of comfort with pre-requisite material<br />
+</li>
+<li>You will be given 1 hour to complete the quiz which can be taken anytime within the provided 1 week time window</li>
+</ul>
+<p><span style="color: red;">Pre-semester assessment to be taken on Canvas by Tuesday, September 3 at 10:00 a.m. (available on Canvas in the Quizzes tab by August 26)</span></p>
+<hr />
+</div>
+</div>
+<div id="causal-inference-measures-of-effect-and-association-multivariable-model" class="section level3">
+<h3>01. Causal Inference, Measures of Effect and Association, Multivariable Model</h3>
+<p><strong>Tuesday, September 3, 2021</strong></p>
+<div id="learning-objectives-1" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Discuss causal inference and the concept of the counterfactual</li>
+<li>Distinguish between absolute vs. relative measures of effect and association</li>
+<li>Explain the relationships among various measures of association</li>
+<li>Discuss the multivariable model and its advantages over tabular analyses for analysis of epidemiologic data</li>
+</ul>
+</div>
+<div id="lab-1" class="section level4">
+<h4>Lab 1</h4>
+<ul>
+<li>Let’s get reacquainted with SAS: review of Odss Ratios and Risk Ratios, and relationships between Odds Ratios, Incidence Rate Ratios, and Risk Ratios</li>
+</ul>
+</div>
+<div id="reading" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Rothman KJ. J Gen Intern Med 2014;29(7):1060-1064.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="precision-and-bias" class="section level3">
+<h3>02. Precision and Bias</h3>
+<p><strong>Tuesday, September 10, 2021</strong></p>
+<div id="learning-objectives-2" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Discuss and compare precision and bias<br />
+</li>
+<li>Explain how selection bias, information bias, and confounding can influence observed measures of association<br />
+</li>
+<li>Discriminate between selection bias, information bias, and confounding<br />
+</li>
+<li>Distinguish between confounding and mediation</li>
+</ul>
+</div>
+<div id="lab-2" class="section level4">
+<h4>Lab 2</h4>
+<ul>
+<li>Bias: assess confounding by stratified analysis</li>
+</ul>
+</div>
+<div id="reading-1" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Nichol et al. NEJM 2007;357:1373-1381.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="interaction" class="section level3">
+<h3>03. Interaction</h3>
+<p><strong>Tuesday, September 17, 2021</strong></p>
+<div id="learning-objectives-3" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Describe and distinguish between statistical and biological interaction<br />
+</li>
+<li>Assess interaction on the additive and multiplicative scales<br />
+</li>
+<li>Explore interaction in stratified and regression analyses</li>
+</ul>
+</div>
+<div id="lab-3" class="section level4">
+<h4>Lab 3</h4>
+<ul>
+<li>Interaction: evaluate additive and multiplicative interaction by stratified analysis</li>
+</ul>
+</div>
+<div id="reading-2" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Flink et al. PLoS ONE. 2013;8(8):e70070</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 1 is Due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="case-control-analysis-i" class="section level3">
+<h3>04. Case-Control Analysis I</h3>
+<p><strong>Tuesday, September 24, 2021</strong></p>
+<div id="learning-objectives-4" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Summarize the design elements of a case-control study<br />
+</li>
+<li>Describe the measure of association used for a case-control study<br />
+</li>
+<li>Discuss the fundamental concepts underlying the logistic regression model and when it is useful for the analysis of epidemiologic data<br />
+</li>
+<li>Demonstrate approaches for deciding which covariates to include in a multivariable model</li>
+</ul>
+</div>
+<div id="lab-4" class="section level4">
+<h4>Lab 4</h4>
+<ul>
+<li>Logistic Regression: assess confounding and interaction using regression</li>
+</ul>
+</div>
+<div id="reading-3" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Hogervorst et al. JNCI 2009;101:651-662</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 2 is Due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="case-control-analysis-ii" class="section level3">
+<h3>05. Case-Control Analysis II</h3>
+<p><strong>Tuesday, October 1, 2021</strong></p>
+<div id="learning-objectives-5" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Demonstrate approaches to evaluate linearity</li>
+<li>Evaluate confounding and interaction using a multivariable model</li>
+<li>Describe model evaluation</li>
+<li>Discuss and apply an extension of the logistic model – Polytomous Regression</li>
+</ul>
+</div>
+<div id="lab-5" class="section level4">
+<h4>Lab 5</h4>
+<ul>
+<li>Model Building, Assessing Linearity, Polytomous Modeling</li>
+</ul>
+</div>
+<div id="reading-4" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Merritt et al. British Journal of Cancer 2014; 110: 1392–1401</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 3 is Due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="review-for-midterm" class="section level3">
+<h3>Review for Midterm</h3>
+<p><strong>Tuesday, October 8, 2021</strong></p>
+<div id="lecture" class="section level4">
+<h4>Lecture</h4>
+<ul>
+<li>Midterm review of concepts up through case-control analysis II</li>
+</ul>
+</div>
+<div id="lab" class="section level4">
+<h4>Lab</h4>
+<ul>
+<li>We will review sample midterm questions in lab based on midterm review problem set</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 4 is Due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="in-class-midterm" class="section level3">
+<h3>In-Class Midterm</h3>
+<p><strong>Tuesday, October 15, 2021</strong></p>
+<p>In-class midterm exam - 1:00 p.m. to 3:50 p.m.</p>
+<hr />
+</div>
+<div id="cohortfollow-up-analysis-age-period-cohort-effects" class="section level3">
+<h3>06. Cohort/Follow-up Analysis &amp; Age, Period, Cohort Effects</h3>
+<p><strong>Tuesday, October 22, 2021</strong></p>
+<div id="learning-objectives-6" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Summarize the design elements of a cohort study</li>
+<li>Describe and discuss utility of analysis of age, period, and cohort effects</li>
+<li>Describe and demonstrate basic survival analysis: Life Table and Kaplan-Meier methods</li>
+</ul>
+</div>
+<div id="lab-6" class="section level4">
+<h4>Lab 6</h4>
+<ul>
+<li>Kaplan Meier / Non-Parametric Survival Analysis</li>
+</ul>
+</div>
+<div id="reading-5" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Bresalier et al. NEJM 2005;352(11):1092-1102<br />
+</li>
+<li>Keyes et al. IJE 2012;41:495–503</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="cohortfollow-up-analysis-ii" class="section level3">
+<h3>07. Cohort/Follow-up Analysis II</h3>
+<p><strong>Tuesday, October 29, 2021</strong></p>
+<div id="learning-objectives-7" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Describe and discuss the choices for multivariable models of survival data once we move beyond Kaplan-Meier and Life Table methods</li>
+<li>Discuss the Cox Proportional Hazards Model and describe its assumptions</li>
+<li>Decide when the Cox model is a good choice for the analysis of epidemiologic data</li>
+<li>Demonstrate approaches for evaluating whether the assumptions of this model have been met</li>
+<li>Review an application of the Cox model from the literature</li>
+<li>Explain the concept of time-varying covariates</li>
+<li>Demonstrate the utility of time-varying covariates in the analysis of data from cohort studies</li>
+<li>Evaluate confounding and interaction using a multivariable model</li>
+</ul>
+</div>
+<div id="lab-7" class="section level4">
+<h4>Lab 7</h4>
+<ul>
+<li>Cox PH Modeling</li>
+</ul>
+</div>
+<div id="reading-6" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Tobias et al. NEJM 2014;370:233-44<br />
+</li>
+<li>Powell et al. 2012. (time varying covariates article)</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="no-class---election-day" class="section level3">
+<h3>No Class - Election Day</h3>
+<p><strong>Tuesday, November 5, 2021</strong></p>
+<p><span style="color: red;">Take-home quiz to be taken on Canvas by Tuesday, November 5th at 1:00 p.m.</span></p>
+<hr />
+</div>
+<div id="matched-analysis-and-correlated-data" class="section level3">
+<h3>08. Matched Analysis and Correlated Data</h3>
+<p><strong>Tuesday, November 12, 2021</strong></p>
+<div id="learning-objectives-8" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Describe the purpose and benefits of matching in case-control<br />
+</li>
+<li>Summarize tabular analyses for matched data<br />
+</li>
+<li>Discuss regression models suitable for matched data; apply these methods<br />
+</li>
+<li>Discuss different options for handling correlated data<br />
+</li>
+<li>Compare and contrast GEE and MLMs</li>
+</ul>
+</div>
+<div id="lab-8" class="section level4">
+<h4>Lab 8</h4>
+<ul>
+<li>Matching and Modeling: Conditional Logistic Regression</li>
+</ul>
+</div>
+<div id="reading-7" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Ludvigsson et al. JAMA Psychiatry. 2013;70(11):1224-1230<br />
+</li>
+<li>Shen et al. PLoS ONE 2012; 7(9):e44308</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 5 is Due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="poisson-regression-and-advanced-topics" class="section level3">
+<h3>09. Poisson Regression and Advanced Topics</h3>
+<p><strong>Tuesday, November 19, 2021</strong></p>
+<div id="learning-objectives-9" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Describe and give examples of types of correlated data</li>
+<li>Examine commonly used regression models for correlated data</li>
+<li>Discuss poisson regression model and describe its assumptions</li>
+<li>Decide when the poisson model is a good choice for the analysis of epidemiologic data</li>
+<li>Demonstrate approaches for evaluating whether the assumptions of the Poisson model have been met</li>
+<li>Describe relative risk regression</li>
+</ul>
+</div>
+<div id="lab-9" class="section level4">
+<h4>Lab 9</h4>
+<ul>
+<li>GEE, poisson and relative risk regression</li>
+</ul>
+</div>
+<div id="reading-8" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Perkins et al. Cancer 2014;120:2514-21<br />
+</li>
+<li>Fang et al. NEJM 2012;366:1310-8.</li>
+</ul>
+<p><span style="color: red;"><strong>Take-home quiz to be taken on Canvas by Tuesday, November 19th at 1:00 p.m.</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="synthesis-of-the-literature" class="section level3">
+<h3>10. Synthesis of the Literature</h3>
+<p><strong>Tuesday, November 26, 2021</strong></p>
+<div id="learning-objectives-10" class="section level4">
+<h4>Learning Objectives</h4>
+<ul>
+<li>Discuss and distinguish between narrative reviews, meta-analysis, and pooled analysis<br />
+</li>
+<li>Explain statistical methods used in meta- and pooled analyses</li>
+</ul>
+</div>
+<div id="lab-10" class="section level4">
+<h4>Lab 10</h4>
+<ul>
+<li>Synthesis of Literature and Meta-Analysis<br />
+</li>
+<li>Discussion of Auvinen et al., Hepworth et al., and Lönn et al. </li>
+</ul>
+</div>
+<div id="reading-9" class="section level4">
+<h4>Reading</h4>
+<ul>
+<li>Auvinen, Anssi, et al. Epidemiology 13.3 (2002): 356-359.<br />
+</li>
+<li>Hepworth, Sarah J., et al. BMJ 332.7546 (2006): 883-887.<br />
+</li>
+<li>Lönn, Stefan, et al. Epidemiology 15.6 (2004): 653-659.</li>
+</ul>
+<p><span style="color: red;"><strong>Homework 6 due</strong></span></p>
+<hr />
+</div>
+</div>
+<div id="review-for-final-exam" class="section level3">
+<h3>Review for Final Exam</h3>
+<p><strong>Tuesday, December 3, 2021</strong></p>
+<p>Take-home portion of final exam available on Canvas by end of day on Tuesday, December 3</p>
+<hr />
+</div>
+<div id="in-class-final-exam" class="section level3">
+<h3>In-Class Final Exam</h3>
+<p><strong>Tuesday, December 10, 2021</strong></p>
+<p>In-class portion of final exam - 1:00 p.m. to 2:50 p.m.</p>
+<hr />
+</div>
+<div id="take-home-final-exam" class="section level3">
+<h3>Take-Home Final Exam</h3>
+<p><strong>Tuesday, December 12, 2021</strong></p>
+<p>Take-home portion of final exam due on Thursday, December 12 by 12:00 p.m.</p>
+<p>Final exams should be submitted <strong>in-person</strong>; submission details will be provided closer to exam date.</p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -411,13 +808,39 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

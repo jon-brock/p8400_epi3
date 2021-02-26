@@ -43,6 +43,8 @@ navbar:
       href: datasets/metaanlysis.xls
     - text: Montana
       href: datasets/montana.txt
+  - text: Supplemental Readings  
+    href: readings.html
   right:
     - text: "LinkedIn"
       href: https://www.linkedin.com/in/jon-brock/
