@@ -17,7 +17,6 @@ library(tidyverse)
 library(janitor)
 library(gmodels)
 library(epitools)
-library(kableExtra)
 ```
 
 ### Part A  
