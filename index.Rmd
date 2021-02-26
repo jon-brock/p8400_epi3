@@ -74,5 +74,149 @@ John Pamplin | jrp2166@cumc.columbia.edu | Tuesdays <br> 12:00 p.m. to 1:00 p.m.
 Alex Perlmutter | asp2138@cumc.columbia.edu | TBD | TBD  
 Richard Teran | rat2127@cumc.columbia.edu | TBD | TBD  
 
+*ARB = Allen Rosenfield Building*  
+
 ***  
+
+### Required Textbook(s)  
+
+There is no required textbook for this course. However, there are required article readings each week specified in the course schedule, located in the “assigned readings” folder on Canvas.  
+
+***  
+
+### Recommended Reading  
+
+For theoretical aspects of epidemiological research and data analytic methods, the following books are also recommended for reading and have been placed on reserve at the Health Sciences library (text also available online through the Health Sciences Library):  
+
+1. [Rothman K, Greenland S, Lash T. (2008) Modern Epidemiology (3rd edition). Philadelphia: Lippincott-Raven.](http://www.columbia.edu/cgi-bin/cul/resolve?clio8363805)  
+2. [Hosmer DW, Lemeshow S (2013). Applied Logistic Regression (3nd edition). New York: John Wiley & Sons.](http://onlinelibrary.wiley.com/book/10.1002/9781118548387)  
+3. [Hosmer DW, Lemeshow S (2008). Applied Survival Analysis. New York: John Wiley & Sons.](http://onlinelibrary.wiley.com/book/10.1002/9780470258019)  
+
+***  
+
+### Course Structure  
+
+Class will begin with a 1 hour and 50 minute lecture which will be followed by a 50 minute lab session.  
+
+***  
+
+### Computer Laboratories  
+
+Laboratories are designed to provide more informal discussions of conceptual issues, provide hands-on experience of statistical modeling and to provide technical assistance to students. Students will be randomly assigned to a laboratory section. All laboratories are held immediately after class from 3:00 p.m. to 3:50 p.m. in the following locations:  
+
+**Laboratory Sections and Locations**  
+
+* Section 001: Location HSC LL106; T.A. Precious Esie  
+* Section 002: Location HSC LL107; T.A. Diana Garofalo  
+* Section 003: Location HSC LL108A/B; T.A. Shadiya Moss  
+* Section 004: Location HSC LL109A/B; T.A. John Pamplin  
+* Section 005: Location HSC LL110; T.A. Alex Perlmutter  
+
+***  
+
+### SAS Installation  
+
+Students are expected to bring their laptops to class with SAS installed.  
+
+<span style="color: red;">*If you do not have SAS installed on your laptop</span>, you will need to let [Dr. Genkinger](jg3081@cumc.columbia.edu) and [Adiba Ashrafi](ai2337@cumc.columbia.edu) know so that we can make arrangements for you. You will need SAS to complete laboratories, quizzes and homeworks.  
+
+***  
+
+### SAS Help  
+
+[Link to SAS Online Tutorials](https://stats.idre.ucla.edu/sas/)  
+Also see the “SAS Help” folder under “Files” in Canvas.  
+
+***  
+
+### Audience Response Software  
+
+We will be using audience response questions during lecture to encourage participation and to give students an opportunity to participate during lecture. You will receive points for participating and for answering polls correctly. Your responses will count toward 5% of your grade. You will need to register with Poll Everywhere using your Columbia UNI and password. Your Poll Everywhere account will be linked to your Courseworks gradebook, therefore, your account must be associated with your Columbia email.  
+
+If you already have a Poll Everywhere account, verify that it is associated with one of your Columbia email addresses. If you have an account linked to a non-Columbia email (i.e., Gmail, yahoo, Hotmail, etc.), you will need to create a new account. A document will be shared before the first class and poste to Courseworks (Files > Poll Everywhere) detailing the steps necessary to register for a Poll Everywhere account.  
+
+To use Poll Everywhere, you can either download the app to your phone or table or access it through the following website: www.pollev.com/jeaninegenki547 . If you would like to use the app on your phone or tablet, please download the app before the first class.  
+
+***  
+
+### Emailing Policy  
+
+* Email your lab TA and cc: [Dr. Genkinger](jg3081@cumc.columbia.edu) and [Adiba Ashrafi](ai2337@cumc.columbia.edu) on all emails regarding the course or homework assignments.  
+* Email [Richard Teran](rat2127@cumc.columbia.edu) regarding any Canvas, Poll Everywhere, and
+lecture recording issues.  
+* Emails received after 6:00 p.m. on the day prior to an assignment’s due date may not be answered before the assignment is due.  
+
+***  
+
+### Assessment and Grading Policy  
+
+
+
+***  
+
+### Pre-Semester Assessment  
+
+
+
+***  
+
+### Homework  
+
+
+
+***  
+
+### Quizzes  
+
+
+
+***  
+
+### Midterm Exam  
+
+
+
+***  
+
+### Final Exam  
+
+
+
+***  
+
+### Final Grade Cutpoints  
+
+
+
+***  
+
+### Re-Grading Policy  
+
+
+
+***  
+
+### Lecture Recordings  
+
+
+
+***  
+
+### Mailman School Policies and Expectations  
+
+
+
+#### Academic Integrity  
+
+
+
+#### Disability Access  
+
+
+
+#### Encouraging an Open and Inclusive Classroom Environment  
+
+
+
+
 
