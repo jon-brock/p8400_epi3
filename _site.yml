@@ -50,7 +50,7 @@ navbar:
   right:
     - text: "Email"
       href: mailto:<j.brock@columbia.edu>
-    - text: "GitHub"
+    - text: "Github"
       href: http://github.com/jpb2210/
 output:
   html_document:
