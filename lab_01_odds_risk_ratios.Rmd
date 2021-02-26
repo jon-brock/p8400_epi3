@@ -251,12 +251,12 @@ crude_ors_tbl <-
     rename("exposure and outcome" = ...4) %>% 
     select("exposure and outcome", everything()) %>% 
     mutate_if(is.numeric, round, digits = 2) %>% 
-    #knitr::kable(
+    knitr::kable()
     #   align = 'c',
     #   digits = 2,
     #   caption = "Crude Odds Ratios")
-    kbl() %>% 
-        kable_styling(bootstrap_options = c("striped", full_width = F, " condensed"))
+    #kbl() %>% 
+        #kable_styling(bootstrap_options = c("striped", full_width = F, " condensed"))
 
 crude_rrs_tbl <- 
     bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %>% 
