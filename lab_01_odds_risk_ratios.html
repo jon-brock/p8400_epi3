@@ -237,7 +237,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Home</a>
+      <a class="navbar-brand" href="index.html">P8400</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -246,7 +246,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lab Topics
+    Lecture Topics
      
     <span class="caret"></span>
   </a>
@@ -669,16 +669,13 @@ crude_ors_tbl &lt;-
     rename(&quot;exposure and outcome&quot; = ...4) %&gt;% 
     select(&quot;exposure and outcome&quot;, everything()) %&gt;% 
     mutate_if(is.numeric, round, digits = 2) %&gt;% 
-    knitr::kable()</code></pre>
+    knitr::kable(
+        align = &#39;lccc&#39;,
+        digits = 2,
+        caption = &quot;Crude Odds Ratios&quot;)</code></pre>
 <pre><code>## New names:
 ## * NA -&gt; ...4</code></pre>
-<pre class="r"><code>    #   align = &#39;c&#39;,
-    #   digits = 2,
-    #   caption = &quot;Crude Odds Ratios&quot;)
-    #kbl() %&gt;% 
-        #kable_styling(bootstrap_options = c(&quot;striped&quot;, full_width = F, &quot; condensed&quot;))
-
-crude_rrs_tbl &lt;- 
+<pre class="r"><code>crude_rrs_tbl &lt;- 
     bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %&gt;% 
     knitr::kable(
         align = &#39;c&#39;,
@@ -686,32 +683,33 @@ crude_rrs_tbl &lt;-
         caption = &quot;Crude Risk Ratios&quot;)</code></pre>
 <pre class="r"><code>crude_ors_tbl</code></pre>
 <table>
+<caption>Crude Odds Ratios</caption>
 <thead>
 <tr class="header">
 <th align="left">exposure and outcome</th>
-<th align="right">odds ratio</th>
-<th align="right">95% lower limit</th>
-<th align="right">95% upper limit</th>
+<th align="center">odds ratio</th>
+<th align="center">95% lower limit</th>
+<th align="center">95% upper limit</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Family History and CVD</td>
-<td align="right">6.00</td>
-<td align="right">0.81</td>
-<td align="right">44.35</td>
+<td align="center">6.00</td>
+<td align="center">0.81</td>
+<td align="center">44.35</td>
 </tr>
 <tr class="even">
 <td align="left">Statin Use and CVD</td>
-<td align="right">0.17</td>
-<td align="right">0.02</td>
-<td align="right">1.23</td>
+<td align="center">0.17</td>
+<td align="center">0.02</td>
+<td align="center">1.23</td>
 </tr>
 <tr class="odd">
 <td align="left">Obesity and CVD</td>
-<td align="right">3.00</td>
-<td align="right">0.42</td>
-<td align="right">21.30</td>
+<td align="center">3.00</td>
+<td align="center">0.42</td>
+<td align="center">21.30</td>
 </tr>
 </tbody>
 </table>

@@ -1,5 +1,5 @@
 ---
-title: "Lab 1: Review of Odds and Risk Ratios"
+title: "Review of Odds and Risk Ratios"
 output: html_document
 ---  
 
@@ -25,13 +25,13 @@ In Part A of this lab we will be using a simple, made-up dataset examining risk 
 
 To begin, please open up SAS and start a new program. You may want to save this program as ‘Lab 1’ to your flash drive for future reference. As you go through the lab, you will need to copy and paste the code that is provided to your new SAS program.
 
-Column No. |  Variable Name | Range/Description |
---- | --- | --- |
-1 | id | 1-20 (for CVD) and 1-50 (for CVD_2) |
-2 | cvd | Cardiovascular Disease Status <br> 0 = Non-Diseased (no CVD) <br> 1 = Diseased (CVD) |
-3 | famhx | Family History of CVD <br> 0 = No Family History <br> 1 = Family History |
-4 | obese | Obesity <br> 0 = Not Obese <br> 1 = Obese |
-5 | statin | Statin Drug Use <br> 0 = No Statin Drug Use <br> 1 = Statin Drug Use |  
+|Column No.   |Variable Name  |Range/Description                                                                    |  
+|----------   |----------     |----------                                                                           |  
+|1            |id             |1-20 (for CVD) and 1-50 (for CVD_2)                                                  |  
+|2            |cvd            |Cardiovascular Disease Status <br> 0 = Non-Diseased (no CVD) <br> 1 = Diseased |(CVD)|  
+|3            |famhx          |Family History of CVD <br> 0 = No Family History <br> 1 = Family History             |  
+|4            |obese          |Obesity <br> 0 = Not Obese <br> 1 = Obese                                            |
+|5            |statin         |Statin Drug Use <br> 0 = No Statin Drug Use <br> 1 = Statin Drug Use                 |  
 
 ***
 
@@ -251,12 +251,10 @@ crude_ors_tbl <-
     rename("exposure and outcome" = ...4) %>% 
     select("exposure and outcome", everything()) %>% 
     mutate_if(is.numeric, round, digits = 2) %>% 
-    knitr::kable()
-    #   align = 'c',
-    #   digits = 2,
-    #   caption = "Crude Odds Ratios")
-    #kbl() %>% 
-        #kable_styling(bootstrap_options = c("striped", full_width = F, " condensed"))
+    knitr::kable(
+        align = 'lccc',
+        digits = 2,
+        caption = "Crude Odds Ratios")
 
 crude_rrs_tbl <- 
     bind_rows(rr_famhx_cvd_tbl, rr_statin_cvd_tbl, rr_obese_cvd_tbl) %>% 

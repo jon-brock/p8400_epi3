@@ -1,11 +1,11 @@
 name: "Jon Brock"
 output_dir: "."
 navbar:
-  title: "Home"
+  title: "P8400"
   left:
   - text: Course Schedule
     href: schedule.html
-  - text: Lab Topics
+  - text: Lecture Topics
     menu: 
     - text: 01. Review of Odds and Risk Ratios
       href: lab_01_odds_risk_ratios.html

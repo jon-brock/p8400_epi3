@@ -1,3 +1,34 @@
+---
+title: "Lab 3: Interaction"
+output: html_document
+---  
+
+### Lab Learning Objectives  
+- Part 1: to evaluate additive and multiplicative interaction by stratified analysis  
+- Part 2: to explore the interaction fallacy  
+- Part 3: to understand the difference between confounding and interaction  
+
 ***  
-### Interaction
+
+#### Part 1 - Statistical Interaction
+##### Learning Objectives  
+- To practice using **Rothman's notation/formulas** for interaction (R~XZ~)  
+- To assess interaction in a simple stratified analysis (i.e. 2x2 tables)  
+- To explore what is meant by **scale dependence** of interaction by using a numeric example to *qualitatively* assess both multiplicative and additive interaction with Rothman's formulas  
+    - *That is, these formulas don’t provide a measure of the statistical significance of the interaction. Rather, they allow us to assess/make judgments about the magnitude of the difference in the effect of X on Y once we account for the modifier, Z. It is a good idea to have some idea of the difference in effect sizes within Z before moving on to test whether or not any observed differences are statistically significant.*  
+- To understand and demonstrate the relationship between assessing additive interaction using risk differences and additive interaction using risk ratios (i.e. using **RERI**) using a numeric example from a dataset in which it is possible to calculate both RDs and RRs (the `chs03.sas7bdat` dataset)  
+
 ***  
+
+In Lab 2 you assessed family history as a potential confounder of the relationship between insurance status and receiving a timely colonoscopy screening. It has also been suggested that the effect of insurance status on receiving a timely colonoscopy screening may be modified by income.  
+
+Therefore, you would like to investigate whether income (“income”) modifies the effect of insurance status (“insured”) on colonoscopy screening (“colonoscopy10yr”).  
+
+As we noted in Lab 2, CHS data includes people 18+ years old; however, the colonoscopy question was only asked to those 50+ years old.  
+
+When we test for interaction, we will want to limit the analysis to those 50+ years old.  
+
+***  
+
+
+

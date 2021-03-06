@@ -11,7 +11,7 @@
 
 
 
-<title>lab_03_interaction.utf8</title>
+<title>Lab 3: Interaction</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -237,7 +237,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Home</a>
+      <a class="navbar-brand" href="index.html">P8400</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -246,7 +246,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lab Topics
+    Lecture Topics
      
     <span class="caret"></span>
   </a>
@@ -336,14 +336,45 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Lab 3: Interaction</h1>
 
 </div>
 
 
+<div id="lab-learning-objectives" class="section level3">
+<h3>Lab Learning Objectives</h3>
+<ul>
+<li>Part 1: to evaluate additive and multiplicative interaction by stratified analysis<br />
+</li>
+<li>Part 2: to explore the interaction fallacy<br />
+</li>
+<li>Part 3: to understand the difference between confounding and interaction</li>
+</ul>
 <hr />
-<div id="interaction" class="section level3">
-<h3>Interaction</h3>
+<div id="part-1---statistical-interaction" class="section level4">
+<h4>Part 1 - Statistical Interaction</h4>
+<div id="learning-objectives" class="section level5">
+<h5>Learning Objectives</h5>
+<ul>
+<li>To practice using <strong>Rothman’s notation/formulas</strong> for interaction (R<sub>XZ</sub>)<br />
+</li>
+<li>To assess interaction in a simple stratified analysis (i.e. 2x2 tables)<br />
+</li>
+<li>To explore what is meant by <strong>scale dependence</strong> of interaction by using a numeric example to <em>qualitatively</em> assess both multiplicative and additive interaction with Rothman’s formulas
+<ul>
+<li><em>That is, these formulas don’t provide a measure of the statistical significance of the interaction. Rather, they allow us to assess/make judgments about the magnitude of the difference in the effect of X on Y once we account for the modifier, Z. It is a good idea to have some idea of the difference in effect sizes within Z before moving on to test whether or not any observed differences are statistically significant.</em><br />
+</li>
+</ul></li>
+<li>To understand and demonstrate the relationship between assessing additive interaction using risk differences and additive interaction using risk ratios (i.e. using <strong>RERI</strong>) using a numeric example from a dataset in which it is possible to calculate both RDs and RRs (the <code>chs03.sas7bdat</code> dataset)</li>
+</ul>
 <hr />
+<p>In Lab 2 you assessed family history as a potential confounder of the relationship between insurance status and receiving a timely colonoscopy screening. It has also been suggested that the effect of insurance status on receiving a timely colonoscopy screening may be modified by income.</p>
+<p>Therefore, you would like to investigate whether income (“income”) modifies the effect of insurance status (“insured”) on colonoscopy screening (“colonoscopy10yr”).</p>
+<p>As we noted in Lab 2, CHS data includes people 18+ years old; however, the colonoscopy question was only asked to those 50+ years old.</p>
+<p>When we test for interaction, we will want to limit the analysis to those 50+ years old.</p>
+<hr />
+</div>
+</div>
 </div>
 
 
